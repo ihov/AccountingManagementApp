@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.3.final using JasperReports Library version 4.5.0  -->
+<!-- 2015-08-05T11:33:41 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoAbonosEmpresa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="VitaDB"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="P_RUTEMPRESA" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[select e.rutcliente, e.rutempresa, e.razonsocial, e.valormensual, c.nombres, c.paterno, c.materno, a.rutempresa, e.girocomercial, a.monto, a.nrecibo, a.observacion, a.fecha, m.descripcion
+from abono a, empresa e, cliente c, mes m
+where e.rutempresa =  $P{P_RUTEMPRESA} 
+and c.rutcliente = e.rutcliente
+and a.mes = m.idmes
+order by a.fecha desc]]>
+	</queryString>
+	<field name="rutcliente" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="paterno" class="java.lang.String"/>
+	<field name="materno" class="java.lang.String"/>
+	<field name="rutempresa" class="java.lang.String"/>
+	<field name="girocomercial" class="java.lang.String"/>
+	<field name="monto" class="java.lang.Integer"/>
+	<field name="nrecibo" class="java.lang.String"/>
+	<field name="observacion" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="razonsocial" class="java.lang.String"/>
+	<field name="valormensual" class="java.lang.Integer"/>
+	<field name="COLUMN_8" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="194" splitType="Stretch">
+			<staticText>
+				<reportElement x="126" y="0" width="300" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Listado Abonos Empresa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="60" width="120" height="20" backcolor="#DEDEDE">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Rut Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="80" width="120" height="20" backcolor="#DEDEDE">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Nombre Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="100" width="120" height="20" backcolor="#DEDEDE">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Rut Empresa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="120" width="120" height="20" backcolor="#DEDEDE">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Razón Social]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="60" width="434" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" "+$F{rutcliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="80" width="434" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" "+$F{nombres}+" "+$F{paterno}+" "+$F{materno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="100" width="434" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" "+$F{rutempresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="120" width="434" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" "+$F{razonsocial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="140" width="434" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" "+$F{girocomercial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="140" width="120" height="20" backcolor="#DEDEDE">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Giro Comercial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="160" width="120" height="20" backcolor="#DEDEDE">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Valor Mensual]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="160" width="434" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" "+$F{valormensual}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="194" y="0" width="70" height="20" backcolor="#DEDEDE">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="264" y="0" width="70" height="20" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° Recibo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="334" y="0" width="220" height="20" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="30" y="0" width="80" height="20" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="30" height="20" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="110" y="0" width="84" height="20" backcolor="#DEDEDE">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pago Mes]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="194" y="0" width="70" height="20" isPrintWhenDetailOverflows="true">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "+$F{monto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="264" y="0" width="70" height="20" isPrintWhenDetailOverflows="true">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "+$F{nrecibo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="334" y="0" width="220" height="20" isPrintWhenDetailOverflows="true">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "+$F{observacion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="30" y="0" width="80" height="20" isPrintWhenDetailOverflows="true">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "+$F{fecha}.getDay()+"-"+$F{fecha}.getMonth()+"-"+YEAR($F{fecha})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="30" height="20" isPrintWhenDetailOverflows="true">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "+$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="84" height="20" isPrintWhenDetailOverflows="true">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" "+$F{descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="454" y="10" width="100" height="21"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

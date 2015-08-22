@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="UserAvatar" prefHeight="316.0" prefWidth="608.0" rotate="0.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="cl.ihov.project.view.controllers.ClientController">
+  <children>
+    <Label fx:id="label" layoutX="220.0" layoutY="14.0" text="INGRESAR CLIENTE">
+      <font>
+        <Font name="System Bold" size="18.0" />
+      </font>
+    </Label>
+    <Button fx:id="goHome" layoutX="21.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleCliente" text="Volver a Gestión de Clientes" />
+    <TextField fx:id="nombres" layoutX="18.0" layoutY="98.0" prefHeight="27.0" prefWidth="235.0" promptText="Nombres" />
+    <TextField fx:id="paterno" layoutX="269.0" layoutY="98.0" promptText="Paterno" />
+    <TextField fx:id="materno" layoutX="430.0" layoutY="98.0" promptText="Materno" />
+    <TextField fx:id="rut" layoutX="20.0" layoutY="146.0" promptText="Ej: 12345678-9" />
+    <TextField fx:id="email" layoutX="179.0" layoutY="147.0" prefHeight="27.0" prefWidth="399.0" promptText="Ej: victoria@victoria.cl" />
+    <TextField fx:id="telefono" layoutX="18.0" layoutY="201.0" promptText="Ej: (32) 1234567" />
+    <TextField fx:id="celular" layoutX="179.0" layoutY="202.0" promptText="Ej: (9)12345678" />
+    <Button layoutX="445.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleSaveClient" text="Ingresar" />
+    <Label layoutX="20.0" layoutY="82.0" text="Nombres" />
+    <Label layoutX="269.0" layoutY="82.0" text="Paterno" />
+    <Label layoutX="430.0" layoutY="82.0" text="Materno" />
+    <Label layoutX="18.0" layoutY="130.0" text="Rut" />
+    <Label layoutX="179.0" layoutY="130.0" text="Email" />
+    <Label layoutX="18.0" layoutY="185.0" text="Teléfono fijo" />
+    <Label layoutX="179.0" layoutY="185.0" text="Celular" />
+  </children>
+  <padding>
+    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+  </padding>
+  <stylesheets>
+    <URL value="@../css/style.css" />
+  </stylesheets>
+</AnchorPane>

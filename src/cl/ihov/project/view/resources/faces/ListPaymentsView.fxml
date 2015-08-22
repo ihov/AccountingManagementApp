@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="UserAvatar" minHeight="-1.0" minWidth="-1.0" prefHeight="360.0" prefWidth="365.0" rotate="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.ihov.project.view.controllers.ListPaymentsController">
+  <padding>
+    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+  </padding>
+  <stylesheets>
+    <URL value="@../css/style.css" />
+  </stylesheets>
+   <children>
+      <Button fx:id="goReportes" layoutX="21.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleGoReports" text="Volver a Menú Reportes" />
+   </children>
+</AnchorPane>

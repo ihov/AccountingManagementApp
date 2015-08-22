@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="UserAvatar" prefHeight="272.0" prefWidth="563.0" rotate="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.ihov.project.view.controllers.ReportController">
+  <children>
+    <Label fx:id="label" layoutX="236.0" layoutY="28.0" text="REPORTES">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+     <Button fx:id="goHome" layoutX="14.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleGoHome" text="Volver  a Menu Principal" />
+     <Button fx:id="goListClient" layoutX="39.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleGoListClient" prefHeight="74.0" prefWidth="146.0" text="Listado de Clientes" />
+     <Button fx:id="goListPayment" layoutX="209.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleGoListPayment" prefHeight="74.0" prefWidth="146.0" text="Listado de Abonos" />
+     <Button fx:id="goListDebtor" layoutX="367.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleGoListDebtor" prefHeight="74.0" prefWidth="146.0" text="Listado de Deudores" />
+  </children>
+  <stylesheets>
+    <URL value="@../css/style.css" />
+  </stylesheets>
+</AnchorPane>

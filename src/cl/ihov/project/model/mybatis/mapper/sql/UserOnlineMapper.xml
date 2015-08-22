@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cl.ihov.project.model.mybatis.mapper.interfaces.UserOnlineMapper">
+
+    <resultMap id="userOnlineResultMap" type="cl.ihov.project.common.vo.UserOnline" >
+        <result column="username" property="userId" jdbcType="VARCHAR" />
+        <result column="userpassword" property="password" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <select id="selectOneUserOnline" resultMap="userOnlineResultMap" parameterType="cl.ihov.project.common.vo.UserOnline">   
+        SELECT
+            username,
+            userpassword
+        FROM
+            users
+        WHERE
+            username = #{userId,jdbcType=VARCHAR} and
+            userpassword = #{password,jdbcType=VARCHAR} 
+    </select>
+</mapper>

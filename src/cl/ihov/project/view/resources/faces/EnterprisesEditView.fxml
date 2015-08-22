@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="UserAvatar" minHeight="-1.0" minWidth="-1.0" prefHeight="520.0" prefWidth="860.0" rotate="0.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="cl.ihov.project.view.controllers.EnterprisesEditController">
+  <children>
+    <Button fx:id="goHome" layoutX="21.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleEmpresas" text="Volver a Gestión de Empresas" />
+    <TextField fx:id="giroComercial" layoutX="447.0" layoutY="161.0" prefHeight="27.0" prefWidth="169.0" promptText="Giro comercial" />
+    <TextField fx:id="comuna" layoutX="649.0" layoutY="161.0" prefHeight="27.0" prefWidth="169.0" promptText="Comuna" />
+    <TextField fx:id="direccion" layoutX="25.0" layoutY="235.0" prefHeight="27.0" prefWidth="795.0" promptText="Dirección" />
+    <ComboBox fx:id="idBanco" layoutX="22.0" layoutY="298.0" prefHeight="25.0" prefWidth="218.0" promptText="Banco" />
+    <ComboBox fx:id="idCuenta" layoutX="323.0" layoutY="298.0" prefHeight="25.0" prefWidth="218.0" promptText="Tipo cuenta" />
+    <TextField fx:id="nroCuenta" layoutX="600.0" layoutY="297.0" prefHeight="27.0" prefWidth="218.0" promptText="Ej. 1234567890" />
+    <TextField fx:id="claveSii" layoutX="22.0" layoutY="362.0" prefHeight="27.0" prefWidth="218.0" promptText="Clave S.I.I." />
+    <TextField fx:id="clavePrevired" layoutX="323.0" layoutY="361.0" prefHeight="27.0" prefWidth="218.0" promptText="Clave Previred" />
+    <TextField fx:id="claveOtro" layoutX="600.0" layoutY="361.0" prefHeight="27.0" prefWidth="218.0" promptText="Otra clave" />
+    <ComboBox fx:id="idContabilidad" layoutX="21.0" layoutY="432.0" prefHeight="25.0" prefWidth="218.0" promptText="Tipo contabilidad" />
+    <TextField fx:id="valorMensual" layoutX="321.0" layoutY="431.0" prefHeight="27.0" prefWidth="218.0" promptText="Ej: 10000" />
+    <Button layoutX="684.0" layoutY="424.0" mnemonicParsing="false" onAction="#handleEditEnterprises" prefHeight="41.0" prefWidth="89.0" text="Editar" />
+    <Label layoutX="445.0" layoutY="143.0" text="Giro comercial" />
+    <Label layoutX="649.0" layoutY="143.0" text="Comuna" />
+    <Label layoutX="26.0" layoutY="218.0" text="Dirección" />
+    <Label layoutX="21.0" layoutY="281.0" text="Banco" />
+    <Label layoutX="323.0" layoutY="281.0" text="Tipo de cuenta" />
+    <Label layoutX="600.0" layoutY="281.0" text="Número de cuenta" />
+    <Label layoutX="21.0" layoutY="344.0" text="Clave S.I.I." />
+    <Label layoutX="323.0" layoutY="344.0" text="Clave previred" />
+    <Label layoutX="601.0" layoutY="344.0" text="Otra clave" />
+    <Label layoutX="21.0" layoutY="414.0" text="Tipo de contabilidad" />
+    <Label layoutX="321.0" layoutY="414.0" text="Valor mensual" />
+    <Button fx:id="buscarEmpresa" layoutX="491.0" layoutY="74.0" mnemonicParsing="false" onAction="#handleFindEnterprise" text="Buscar" />
+    <TextField fx:id="rutBusca" layoutX="324.0" layoutY="73.0" promptText="Rut empresa" />
+    <CheckBox fx:id="activo" layoutX="581.0" layoutY="432.0" mnemonicParsing="false" text="Activo" />
+    <TextField fx:id="rutEmpresa" layoutX="26.0" layoutY="161.0" prefHeight="27.0" prefWidth="169.0" promptText="EJ: 12345678-9" />
+    <Label layoutX="26.0" layoutY="143.0" text="Rut empresa" />
+    <Label layoutX="351.0" layoutY="23.0" text="EDITAR EMPRESA">
+      <font>
+        <Font name="System Bold" size="18.0" />
+      </font>
+    </Label>
+    <TextField fx:id="razonSocial" layoutX="233.0" layoutY="162.0" prefHeight="27.0" prefWidth="169.0" promptText="Razón social" />
+    <Label layoutX="233.0" layoutY="143.0" text="Razón social" />
+  </children>
+  <padding>
+    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+  </padding>
+  <stylesheets>
+    <URL value="@../css/style.css" />
+  </stylesheets>
+</AnchorPane>

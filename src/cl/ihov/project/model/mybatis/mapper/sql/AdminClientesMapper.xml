@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cl.ihov.project.model.mybatis.mapper.interfaces.AdminClientesMapper">   
+    
+    <resultMap id="abonoResultMap" type="cl.ihov.project.common.vo.Abono" >
+        <result column="rutcliente" property="rutCliente" jdbcType="VARCHAR" />
+        <result column="rutempresa" property="rutEmpresa" jdbcType="VARCHAR" />
+        <result column="idabono" property="idAbonoInt" jdbcType="INTEGER" />
+        <result column="monto" property="montoInt" jdbcType="INTEGER" />
+        <result column="fecha" property="fechaDate" jdbcType="DATE" />
+        <result column="observacion" property="observacion" jdbcType="VARCHAR" />
+        <result column="mes" property="mes" jdbcType="VARCHAR" />
+        <result column="anno" property="anno" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <resultMap id="clienteResultMap" type="cl.ihov.project.common.vo.Cliente" >
+        <result column="rutcliente" property="rutCliente" jdbcType="VARCHAR" />
+        <result column="nombres" property="nombres" jdbcType="VARCHAR" />
+        <result column="paterno" property="paterno" jdbcType="VARCHAR" />
+        <result column="materno" property="materno" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="telfijo" property="telFijo" jdbcType="VARCHAR" />
+        <result column="celular" property="celular" jdbcType="VARCHAR" />
+        <result column="activo" property="activo" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <resultMap id="contabilidadResultMap" type="cl.ihov.project.common.vo.Contabilidad" >
+        <result column="idcontabilidad" property="inContabilidad" jdbcType="VARCHAR" />
+        <result column="descripcion" property="descripcion" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <resultMap id="cuentaResultMap" type="cl.ihov.project.common.vo.Cuenta" >
+        <result column="idcuenta" property="idCuenta" jdbcType="VARCHAR" />
+        <result column="descripcion" property="descripcion" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <resultMap id="empresaResultMap" type="cl.ihov.project.common.vo.Empresa" >
+        <result column="rutcliente" property="rutCliente" jdbcType="VARCHAR" />
+        <result column="rutempresa" property="rutEmpresa" jdbcType="VARCHAR" />
+        <result column="girocomercial" property="giroComercial" jdbcType="VARCHAR" />
+        <result column="direccion" property="direccion" jdbcType="VARCHAR" />
+        <result column="comuna" property="comuna" jdbcType="VARCHAR" />
+        <result column="idcontabilidad" property="idContabilidadInt" jdbcType="INTEGER" />
+        <result column="idbanco" property="idBancoInt" jdbcType="INTEGER" />
+        <result column="nrocuenta" property="nroCuenta" jdbcType="VARCHAR" />
+        <result column="idcuenta" property="idCuentaInt" jdbcType="INTEGER" />
+        <result column="clavesii" property="claveSii" jdbcType="VARCHAR" />
+        <result column="claveprevired" property="clavePrevired" jdbcType="VARCHAR" />
+        <result column="claveotro" property="claveOtro" jdbcType="VARCHAR" />
+        <result column="valormensual" property="valorMensualInt" jdbcType="INTEGER" />
+        <result column="activo" property="activo" jdbcType="INTEGER" />
+        <result column="razonsocial" property="razonSocial" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <resultMap id="bancoResultMap" type="cl.ihov.project.common.vo.Banco">
+        <result column="idbanco" property="idBanco" jdbcType="VARCHAR" />
+        <result column="nombre" property="nombre" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <resultMap id="mesResultMap" type="cl.ihov.project.common.vo.Mes" >
+        <result column="idmes" property="idMes" jdbcType="INTEGER" />
+        <result column="descripcion" property="descripcion" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="expressionEmpresa">
+        rutcliente,
+        rutempresa,
+        girocomercial,
+        direccion,
+        comuna,
+        idcontabilidad,
+        idbanco,
+        nrocuenta,
+        idcuenta,
+        clavesii,
+        claveprevired,
+        claveotro,
+        valormensual,
+        activo,
+        razonsocial
+    </sql>
+        
+    <sql id="expressionAbono">       
+        rutempresa,
+        idabono,
+        monto,
+        fecha,
+        nrecibo,
+        observacion,
+        mes,
+        anno
+    </sql>
+    
+    <!--SELECT-->
+    
+    <select id="selectAbonosEmpresa" resultMap="abonoResultMap" parameterType="cl.ihov.project.common.vo.Abono">   
+        SELECT
+        <include refid="expressionAbono"/>
+        FROM
+        abono
+        WHERE
+        rutempresa = #{rutEmpresa,jdbcType=VARCHAR} 
+    </select>
+    
+    <select id="selectAbonoCliente" resultMap="abonoResultMap" parameterType="cl.ihov.project.common.vo.Abono">   
+        SELECT
+        <include refid="expressionAbono"/>
+        FROM
+        abono
+        WHERE
+        rutcliente = #{rutCliente,jdbcType=VARCHAR}            
+    </select>
+    
+    <select id="selectBanco" resultMap="bancoResultMap">   
+        SELECT
+        idbanco,
+        nombre
+        FROM
+        banco        
+    </select>
+    
+    <select id="selectCliente" resultMap="clienteResultMap" parameterType="cl.ihov.project.common.vo.Cliente">   
+        SELECT
+        rutcliente,
+        nombres,
+        paterno,
+        materno,
+        email,
+        telfijo,
+        celular,
+        activo
+        FROM
+        cliente   
+        WHERE
+        rutcliente = #{rutCliente,jdbcType=VARCHAR}            
+    </select>
+    
+    <select id="selectAllCliente" resultMap="clienteResultMap" parameterType="cl.ihov.project.common.vo.Cliente">   
+        SELECT
+        rutcliente,
+        nombres,
+        paterno,
+        materno,
+        email,
+        telfijo,
+        celular,
+        activo
+        FROM
+        cliente 
+    </select>
+    
+    <select id="selectAllClienteActivo" resultMap="clienteResultMap" parameterType="cl.ihov.project.common.vo.Cliente">   
+        SELECT
+        rutcliente,
+        nombres,
+        paterno,
+        materno,
+        email,
+        telfijo,
+        celular
+        FROM
+        cliente 
+        WHERE
+        activo='true'                 
+    </select>
+    
+    <select id="selectContabilidad" resultMap="contabilidadResultMap">   
+        SELECT
+        idcontabilidad,
+        descripcion            
+        FROM
+        contabilidad                      
+    </select>
+    
+    <select id="selectCuenta" resultMap="cuentaResultMap">   
+        SELECT
+        idcuenta,
+        descripcion            
+        FROM
+        cuenta                      
+    </select>
+    
+    <select id="selectEmpresaCliente" resultMap="empresaResultMap" parameterType="cl.ihov.project.common.vo.Empresa">   
+        SELECT
+        <include refid="expressionEmpresa"/>
+        FROM
+        empresa
+        WHERE
+        rutcliente = #{rutCliente,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="selectAllEmpresa" resultMap="empresaResultMap">   
+        SELECT
+        <include refid="expressionEmpresa"/>   
+        FROM
+        empresa
+    </select>
+    
+    <select id="selectEmpresa" resultMap="empresaResultMap" parameterType="cl.ihov.project.common.vo.Empresa">   
+        SELECT
+        <include refid="expressionEmpresa"/>     
+        FROM
+        empresa
+        WHERE
+        rutempresa = #{rutEmpresa,jdbcType=VARCHAR}
+    </select>
+    
+    <!--INSERT-->
+    
+    <insert id="insertCliente" statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Cliente">
+        INSERT INTO 
+        cliente 
+        VALUES (
+        #{rutCliente,jdbcType=VARCHAR},
+        #{nombres,jdbcType=VARCHAR},
+        #{paterno,jdbcType=VARCHAR},
+        #{materno,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR},
+        #{telFijo,jdbcType=VARCHAR},
+        #{celular,jdbcType=VARCHAR},
+        #{activo,jdbcType=VARCHAR})
+    </insert>
+    
+    <insert id="insertEmpresa" statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Empresa">
+        INSERT INTO 
+        empresa 
+        VALUES (
+        #{rutCliente,jdbcType=VARCHAR},
+        #{rutEmpresa,jdbcType=VARCHAR},
+        #{giroComercial,jdbcType=VARCHAR},
+        #{direccion,jdbcType=VARCHAR},
+        #{comuna,jdbcType=VARCHAR},
+        #{idContabilidadInt,jdbcType=INTEGER},
+        #{idBancoInt,jdbcType=INTEGER},
+        #{nroCuenta,jdbcType=VARCHAR},
+        #{idCuentaInt,jdbcType=INTEGER},
+        #{claveSii,jdbcType=VARCHAR},
+        #{clavePrevired,jdbcType=VARCHAR},
+        #{claveOtro,jdbcType=VARCHAR},
+        #{valorMensualInt,jdbcType=INTEGER},
+        #{activo,jdbcType=INTEGER},
+        #{razonSocial,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertAbono" statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Abono">
+        INSERT INTO 
+        abono
+        (rutempresa, monto, nrecibo, observacion, mes, anno, fecha, fecha_mov)
+        VALUES (
+        #{rutEmpresa,jdbcType=VARCHAR},
+        #{montoInt,jdbcType=INTEGER},            
+        #{nrecibo,jdbcType=VARCHAR},
+        #{observacion,jdbcType=VARCHAR},
+        #{mesInt,jdbcType=INTEGER},
+        #{annoInt,jdbcType=INTEGER},
+        #{fechaDate,jdbcType=DATE},
+        CURRENT_TIMESTAMP)
+    </insert>
+    
+    <!--UPDATE-->
+    
+    <update id="updateCliente" statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Cliente">
+        UPDATE
+        cliente
+        SET
+        rutcliente = #{rutCliente,jdbcType=VARCHAR},
+        nombres = #{nombres,jdbcType=VARCHAR},
+        paterno = #{paterno,jdbcType=VARCHAR},
+        materno = #{materno,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        telfijo = #{telFijo,jdbcType=VARCHAR},
+        celular = #{celular,jdbcType=VARCHAR},
+        activo = #{activo,jdbcType=VARCHAR}
+        WHERE
+        rutcliente = #{rutAnterior,jdbcType=VARCHAR}
+    </update>
+    
+    <update id="updateEmpresa" statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Empresa">
+        UPDATE
+        empresa
+        SET
+        rutempresa = #{rutEmpresa,jdbcType=VARCHAR},
+        girocomercial = #{giroComercial,jdbcType=VARCHAR},
+        direccion = #{direccion,jdbcType=VARCHAR},
+        comuna = #{comuna,jdbcType=VARCHAR},
+        idcontabilidad = #{idContabilidadInt,jdbcType=INTEGER},
+        idbanco = #{idBancoInt,jdbcType=INTEGER},
+        nrocuenta = #{nroCuenta,jdbcType=VARCHAR},
+        idcuenta = #{idCuentaInt,jdbcType=INTEGER},
+        clavesii = #{claveSii,jdbcType=VARCHAR},
+        claveprevired = #{clavePrevired,jdbcType=VARCHAR},
+        claveotro = #{claveOtro,jdbcType=VARCHAR},
+        valormensual = #{valorMensualInt,jdbcType=INTEGER},
+        activo = #{activo,jdbcType=VARCHAR},
+        razonsocial = #{razonSocial,jdbcType=VARCHAR}
+        WHERE
+        rutempresa = #{rutAnterior,jdbcType=VARCHAR}
+    </update>
+    
+    <update id="updateAbono" statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Abono">
+        UPDATE
+        abono
+        SET          
+        monto = #{montoInt,jdbcType=INTEGER},            
+        fecha = #{fecha,jdbcType=DATE},   
+        nrecibo = #{nrecibo,jdbcType=VARCHAR},         
+        observacion = #{observacion,jdbcType=VARCHAR}
+        mes = #{mes,jdbcType=VARCHAR}
+        anno =#{anno,jdbcType=VARCHAR}
+        fecha_mov = CURRENT_TIMESTAMP
+        WHERE
+        rutempresa = #{rutEmpresa,jdbcType=VARCHAR} and
+        idabono = #{idAbonoInt,jdbcType=VARCHAR}
+    </update>    
+    
+    <!--DELETE-->
+    
+    <delete id="deleteCliente"  statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Cliente">
+        DELETE FROM
+        cliente
+        WHERE
+        rutcliente = #{rutCliente,jdbcType=VARCHAR}
+    </delete>
+    
+    <delete id="deleteEmpresa"  statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Empresa">
+        DELETE FROM
+        empresa
+        WHERE
+        rutcliente = #{rutCliente,jdbcType=VARCHAR} AND
+        rutempresa = #{rutEmpresa,jdbcType=VARCHAR}
+    </delete>
+    
+    <delete id="deleteAbono"  statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Abono">
+        DELETE FROM
+        abono
+        WHERE
+        rutcliente = #{rutCliente,jdbcType=VARCHAR} AND
+        rutempresa = #{rutEmpresa,jdbcType=VARCHAR} AND
+        idabono = #{idAbono,jdbcType=VARCHAR}
+    </delete>
+    
+    <select id="selectMes" resultMap="mesResultMap">   
+        SELECT
+        idmes,
+        descripcion
+        FROM
+        mes        
+    </select>
+
+</mapper>

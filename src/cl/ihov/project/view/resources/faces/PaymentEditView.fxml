@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="UserAvatar" prefHeight="507.0" prefWidth="810.0" rotate="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.ihov.project.view.controllers.PaymentEditController">
+  <children>
+    <Label fx:id="label" layoutX="325.0" layoutY="34.0" text="Editar Abono">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+    <Button fx:id="goHomeP" layoutX="14.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleAbonos" text="Volver a Gestión de Abonos" />
+      <TableView fx:id="dataAbono" layoutX="25.0" layoutY="111.0" onMousePressed="#loadDataAbono" prefHeight="215.0" prefWidth="756.0" />
+      <TextField fx:id="monto" layoutX="25.0" layoutY="367.0" prefHeight="27.0" prefWidth="148.0" promptText="\$ Monto" />
+      <TextField fx:id="nrecibo" layoutX="25.0" layoutY="428.0" prefHeight="27.0" prefWidth="148.0" promptText="Número de recibo" />
+      <DatePicker fx:id="fecha" layoutX="502.0" layoutY="428.0" prefHeight="27.0" prefWidth="150.0" promptText="Fecha" />
+      <Label layoutX="25.0" layoutY="343.0" text="Valor de abono" />
+      <Label layoutX="539.0" layoutY="404.0" text="Fecha del abono" />
+      <Label layoutX="25.0" layoutY="404.0" text="N° recibo de abono" />
+      <Button fx:id="doPayment" layoutX="681.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleDoEditPayment" text="Editar abono" />
+      <Label layoutX="196.0" layoutY="343.0" text="Observación" />
+      <TextField fx:id="observacion" layoutX="196.0" layoutY="367.0" prefHeight="27.0" prefWidth="558.0" promptText="Escriba una observación..." />
+      <ComboBox fx:id="mesAbono" layoutX="196.0" layoutY="430.0" prefWidth="150.0" />
+      <ComboBox fx:id="annioAbono" layoutX="371.0" layoutY="429.0" prefHeight="26.0" prefWidth="96.0" />
+      <Label layoutX="196.0" layoutY="404.0" text="Mes de abono" />
+      <Label layoutX="371.0" layoutY="404.0" text="Año de abono" />
+      <TextField fx:id="rutBusca" layoutX="307.0" layoutY="69.0" promptText="Rut Empresa" />
+      <Button fx:id="buscarAbono" layoutX="476.0" layoutY="70.0" mnemonicParsing="false" onAction="#buscaAbonosEditar" text="Buscar" />
+  </children>
+  <stylesheets>
+    <URL value="@../css/style.css" />
+  </stylesheets>
+</AnchorPane>

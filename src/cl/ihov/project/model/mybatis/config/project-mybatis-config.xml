@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration PUBLIC 
+"-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <properties resource="cl/ihov/project/common/properties/db_config.properties"/>
+    
+    <environments default="${defaultConnexionEnviroment}">
+
+        <environment id="${environment}">
+            <transactionManager type="MANAGED"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+    </environments>
+    
+    <mappers>
+        <mapper resource="cl/ihov/project/model/mybatis/mapper/sql/UserOnlineMapper.xml"/>
+        <mapper resource="cl/ihov/project/model/mybatis/mapper/sql/AdminClientesMapper.xml"/>
+    </mappers>
+</configuration>

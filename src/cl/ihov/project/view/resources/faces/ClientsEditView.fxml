@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="UserAvatar" prefHeight="316.0" prefWidth="608.0" rotate="0.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="cl.ihov.project.view.controllers.ClientEditController">
+  <children>
+    <Label fx:id="label" layoutX="220.0" layoutY="14.0" text="EDITAR CLIENTE">
+      <font>
+        <Font name="System Bold" size="18.0" />
+      </font>
+    </Label>
+    <Button fx:id="goHome" layoutX="21.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleCliente" text="Volver a Gestión de Clientes" />
+    <TextField fx:id="nombres" layoutX="24.0" layoutY="140.0" prefHeight="27.0" prefWidth="235.0" promptText="Nombres" />
+    <TextField fx:id="paterno" layoutX="275.0" layoutY="140.0" promptText="Paterno" />
+    <TextField fx:id="materno" layoutX="431.0" layoutY="140.0" promptText="Materno" />
+    <TextField fx:id="rut" layoutX="26.0" layoutY="188.0" promptText="EJ: 12345678-9" />
+    <TextField fx:id="email" layoutX="185.0" layoutY="189.0" prefHeight="27.0" prefWidth="394.0" promptText="Ej: victoria@victoria.cl" />
+    <TextField fx:id="telefono" layoutX="24.0" layoutY="243.0" promptText="Ej: (32)1234567" />
+    <TextField fx:id="celular" layoutX="185.0" layoutY="244.0" promptText="Ej: (9)12345678" />
+    <Button layoutX="521.0" layoutY="281.0" mnemonicParsing="false" onAction="#handleEditClient" text="Editar" />
+    <Button fx:id="buscarCliente" layoutX="377.0" layoutY="72.0" mnemonicParsing="false" onAction="#handleFindClient" text="Buscar" />
+    <TextField fx:id="rutBusca" layoutX="204.0" layoutY="71.0" promptText="EJ: 12345678-9" />
+    <Label layoutX="26.0" layoutY="117.0" text="Nombres" />
+    <Label layoutX="276.0" layoutY="117.0" text="Paterno" />
+    <Label layoutX="431.0" layoutY="117.0" text="Materno" />
+    <Label layoutX="26.0" layoutY="169.0" text="Rut" />
+    <Label layoutX="185.0" layoutY="169.0" text="Email" />
+    <Label layoutX="22.0" layoutY="226.0" text="Teléfono fijo" />
+    <Label layoutX="186.0" layoutY="226.0" text="Celular" />
+    <Label layoutX="206.0" layoutY="50.0" text="Rut " />
+    <!--CheckBox fx:id="activo" layoutX="359.0" layoutY="248.0" mnemonicParsing="false" text="Activo" /-->
+  </children>
+  <padding>
+    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+  </padding>
+  <stylesheets>
+    <URL value="@../css/style.css" />
+  </stylesheets>
+</AnchorPane>

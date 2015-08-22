@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.ihov.project.view.controllers.ClientesController">
+    <children>
+        <Button fx:id="clientes" layoutX="300.0" layoutY="137.0" mnemonicParsing="false" onAction="#handleClients" prefHeight="46.0" prefWidth="150.0" text="INGRESAR CLIENTE" textAlignment="CENTER" />
+        <Button fx:id="editClient" layoutX="300.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleGoEditClient" prefHeight="46.0" prefWidth="150.0" text="EDITAR CLIENTE" textAlignment="CENTER" />
+        <Button fx:id="goHome" layoutX="21.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleGoHome" text="Volver a Menú Principal" />
+        <ImageView disable="false" fitHeight="113.0" fitWidth="100.0" layoutX="136.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" smooth="true">
+            <image>
+                <Image url="@../images/clientes.png" />
+            </image>
+        </ImageView>
+        <ImageView disable="false" fitHeight="100.0" fitWidth="110.0" layoutX="136.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true" smooth="true">
+            <image>
+                <Image url="@../images/administrar.png" />
+            </image>
+        </ImageView>
+        <ImageView disable="false" fitHeight="46.0" fitWidth="59.0" layoutX="118.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" smooth="true">
+            <image>
+                <Image url="@../images/flechaAbajo.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

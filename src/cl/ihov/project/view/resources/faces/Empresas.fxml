@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.ihov.project.view.controllers.EmpresasController">
+    <children>
+        <Button fx:id="empresa" layoutX="300.0" layoutY="137.0" mnemonicParsing="false" onAction="#handleEnterprise" prefHeight="46.0" prefWidth="150.0" text="INGRESAR EMPRESA" />
+        <Button fx:id="editEmpresa" layoutX="300.0" layoutY="206.0" mnemonicParsing="false" onAction="#handleGoEditEnterprise" prefHeight="46.0" prefWidth="150.0" text="EDITAR EMPRESA" />
+        <Button fx:id="goHome" layoutX="21.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleGoHome" text="Volver a Menú Principal" />
+        <ImageView disable="false" fitHeight="100.0" fitWidth="110.0" layoutX="107.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" smooth="true">
+            <image>
+                <Image url="@../images/empresas.png" />
+            </image>
+        </ImageView>
+        <ImageView disable="false" fitHeight="100.0" fitWidth="110.0" layoutX="107.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" smooth="true">
+            <image>
+                <Image url="@../images/administrar.png" />
+            </image>
+        </ImageView>
+        <ImageView disable="false" fitHeight="46.0" fitWidth="59.0" layoutX="106.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true" smooth="true">
+            <image>
+                <Image url="@../images/flechaAbajo.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
