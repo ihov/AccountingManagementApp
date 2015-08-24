@@ -12,6 +12,7 @@
         <Button fx:id="goHome" layoutX="21.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleGoHome" text="Volver a Menú Principal" />
         <Button fx:id="abonos" layoutX="319.0" layoutY="102.0" mnemonicParsing="false" onAction="#handlePayment" prefHeight="46.0" prefWidth="150.0" text="INGRESAR ABONOS" textAlignment="CENTER" />
         <Button fx:id="abonosEdit" layoutX="319.0" layoutY="164.0" mnemonicParsing="false" onAction="#handlePaymentEdit" prefHeight="46.0" prefWidth="150.0" text="EDITAR ABONOS" textAlignment="CENTER" />
+        <Button fx:id="abonosDel" layoutX="319.0" layoutY="226.0" mnemonicParsing="false" onAction="#handlePaymentDel" prefHeight="46.0" prefWidth="150.0" text="ELIMINAR ABONOS" textAlignment="CENTER" />
         <ImageView disable="false" fitHeight="113.0" fitWidth="100.0" layoutX="136.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" smooth="true">
             <image>
                 <Image url="@../images/billetera.png" />

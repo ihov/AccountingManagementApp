@@ -15,6 +15,7 @@ import cl.ihov.project.view.controllers.LoginController;
 import cl.ihov.project.view.controllers.MainController;
 import cl.ihov.project.view.controllers.MainMenuController;
 import cl.ihov.project.view.controllers.PaymentController;
+import cl.ihov.project.view.controllers.PaymentDelController;
 import cl.ihov.project.view.controllers.PaymentEditController;
 import cl.ihov.project.view.controllers.ReportController;
 import cl.ihov.project.view.utils.DialogUtils;
@@ -214,6 +215,25 @@ public class MainProject extends Application {
             paymentController.setMainProject(this);
 
             doFeaturesStage("Gestión de Abonos", 620, 850);
+        } catch (IOException e) {
+            DialogUtils.showExceptionDialog(
+                    "Error",
+                    "Se ha producido un error inesperado",
+                    "El detalle de la excepción se presenta \na continuación",
+                    new DataException(e));
+        }
+    }
+    public void showPaymentDelView() {
+        try {
+            FXMLLoader loader = ViewUtils.getFXMLLoader("PaymentDelView");
+            AnchorPane paymentDelOverview = (AnchorPane) loader.load();
+
+            mainView.setCenter(paymentDelOverview);
+
+            PaymentDelController paymentDelController = loader.getController();
+            paymentDelController.setMainProject(this);
+
+            doFeaturesStage("Gestión de Abonos", 420, 850);
         } catch (IOException e) {
             DialogUtils.showExceptionDialog(
                     "Error",

@@ -304,11 +304,11 @@
         abono
         SET          
         monto = #{montoInt,jdbcType=INTEGER},            
-        fecha = #{fecha,jdbcType=DATE},   
+        fecha = #{fechaDate,jdbcType=DATE},   
         nrecibo = #{nrecibo,jdbcType=VARCHAR},         
-        observacion = #{observacion,jdbcType=VARCHAR}
-        mes = #{mes,jdbcType=VARCHAR}
-        anno =#{anno,jdbcType=VARCHAR}
+        observacion = #{observacion,jdbcType=VARCHAR},
+        mes = #{mesInt,jdbcType=INTEGER},
+        anno = #{annoInt,jdbcType=INTEGER},
         fecha_mov = CURRENT_TIMESTAMP
         WHERE
         rutempresa = #{rutEmpresa,jdbcType=VARCHAR} and
@@ -336,9 +336,8 @@
         DELETE FROM
         abono
         WHERE
-        rutcliente = #{rutCliente,jdbcType=VARCHAR} AND
         rutempresa = #{rutEmpresa,jdbcType=VARCHAR} AND
-        idabono = #{idAbono,jdbcType=VARCHAR}
+        idabono = #{idAbonoInt,jdbcType=VARCHAR}
     </delete>
     
     <select id="selectMes" resultMap="mesResultMap">   

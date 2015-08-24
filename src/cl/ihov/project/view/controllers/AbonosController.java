@@ -46,5 +46,9 @@ public class AbonosController implements Initializable {
     private void handlePaymentEdit(ActionEvent event){
         mainProject.showPaymentEditView();
     }
-
+    
+    @FXML
+    private void handlePaymentDel(ActionEvent event){
+        mainProject.showPaymentDelView();
+    }
 }

@@ -97,82 +97,93 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
     }
 
     @FXML
-    private void handleDoEditPayment(ActionEvent event) {        
-        if (rutBusca != null && !rutBusca.getText().isEmpty()) {
-            abonoEmpresa.setRutEmpresa(rutBusca.getText().trim());
-            if (monto.getText() != null && !monto.getText().isEmpty()) {
-                abonoEmpresa.setMonto(monto.getText().trim());
-                if (observacion.getText() != null && !observacion.getText().isEmpty()) {
-                    abonoEmpresa.setObservacion(observacion.getText().trim());
-                    if (nrecibo.getText() != null && !nrecibo.getText().isEmpty()) {
-                        abonoEmpresa.setNrecibo(nrecibo.getText().trim());
-                        if (mesAbono.getValue() != null && !mesAbono.getValue().equals("0")) {
-                            abonoEmpresa.setMes(String.valueOf(mesAbono.getSelectionModel().getSelectedIndex()));
-                            if (annioAbono.getValue() != null && !annioAbono.getValue().equals("0")) {
-                                abonoEmpresa.setAnno(annioAbono.getSelectionModel().getSelectedItem());
-                                if (fecha.getValue() != null) {
-                                    Calendar c = Calendar.getInstance();
-                                    c.set(fecha.getValue().getYear(), fecha.getValue().getMonthValue() - 1, fecha.getValue().getDayOfMonth());
-                                    abonoEmpresa.setFecha(c.getTime().toString());
-                                    try {
-                                        abonoManeger.updateAbono(abonoEmpresa);
-                                        DialogUtils.showSimpleDialog(DialogUtils.INFORMATION_DIALOG,
-                                                "Éxito",
-                                                "Edición OK",
-                                                "La información fue Editada correctamente.");
-                                        mainProject.showMainMenu();
-                                    } catch (DataException ex) {
-                                        DialogUtils.showExceptionDialog(
+    private void handleDoEditPayment(ActionEvent event) {
+        if (dataAbono.getSelectionModel() != null && dataAbono.getSelectionModel().getSelectedItem() != null) {
+            if (rutBusca != null && !rutBusca.getText().isEmpty()) {
+                abonoEmpresa.setRutEmpresa(rutBusca.getText().trim());
+                abonoEmpresa.setIdAbono(dataAbono.getSelectionModel().getSelectedItem().getIdAbono());
+                if (monto.getText() != null && !monto.getText().isEmpty()) {
+                    abonoEmpresa.setMonto(monto.getText().trim());
+                    if (observacion.getText() != null && !observacion.getText().isEmpty()) {
+                        abonoEmpresa.setObservacion(observacion.getText().trim());
+                        if (nrecibo.getText() != null && !nrecibo.getText().isEmpty()) {
+                            abonoEmpresa.setNrecibo(nrecibo.getText().trim());
+                            if (mesAbono.getValue() != null && !mesAbono.getValue().equals("0")) {
+                                abonoEmpresa.setMes(String.valueOf(mesAbono.getSelectionModel().getSelectedIndex()));
+                                if (annioAbono.getValue() != null && !annioAbono.getValue().equals("0")) {
+                                    abonoEmpresa.setAnno(annioAbono.getSelectionModel().getSelectedItem());
+                                    if (fecha.getValue() != null) {
+                                        Calendar c = Calendar.getInstance();
+                                        c.set(fecha.getValue().getYear(), fecha.getValue().getMonthValue() - 1, fecha.getValue().getDayOfMonth());
+                                        abonoEmpresa.setFechaDate(c.getTime());
+                                        try {
+                                            abonoManeger.updateAbono(abonoEmpresa);
+                                            DialogUtils.showSimpleDialog(DialogUtils.INFORMATION_DIALOG,
+                                                    "Éxito",
+                                                    "Edición OK",
+                                                    "La información fue Editada correctamente.");
+                                            buscaAbonosEditar(event);
+                                            clean();
+                                            //mainProject.showAbonos();
+                                        } catch (DataException ex) {
+                                            DialogUtils.showExceptionDialog(
+                                                    "Error",
+                                                    "Se ha producido un error inesperado",
+                                                    "El detalle de la excepción se presenta \na continuación",
+                                                    new DataException(ex));
+                                        }
+                                    } else {
+                                        DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                                                 "Error",
-                                                "Se ha producido un error inesperado",
-                                                "El detalle de la excepción se presenta \na continuación",
-                                                new DataException(ex));
+                                                "Fecha del abono",
+                                                "El registro fecha del abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
                                     }
                                 } else {
                                     DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                                             "Error",
-                                            "Fecha del abono",
-                                            "El registro fecha del abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+                                            "Año de abono",
+                                            "El registro año de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
                                 }
                             } else {
                                 DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                                         "Error",
-                                        "Año de abono",
-                                        "El registro año de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+                                        "Mes de abono",
+                                        "El registro mes de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
                             }
                         } else {
                             DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                                     "Error",
-                                    "Mes de abono",
-                                    "El registro mes de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+                                    "N° de recibo",
+                                    "El registro N° de recibo no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
                         }
                     } else {
                         DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                                 "Error",
-                                "N° de recibo",
-                                "El registro N° de recibo no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+                                "Observación de abono",
+                                "El registro de observación de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
                     }
                 } else {
                     DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                             "Error",
-                            "Observación de abono",
-                            "El registro de observación de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+                            "Valor de abono",
+                            "El registro valor de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
                 }
             } else {
                 DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                         "Error",
-                        "Valor de abono",
-                        "El registro valor de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+                        "Rut ",
+                        "El registro Rut no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
             }
         } else {
             DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                     "Error",
-                    "Rut ",
-                    "El registro Rut no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+                    "Selección ",
+                    "Debe seleccionar un registro. \nIntente seleccionando un elemento de la lista.");
         }
     }
 
     private void cargaPeriodos() {
+        annioAbono.getItems().clear();
         annioAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
         int cont = 1;
         int initialYear = 2010;
@@ -187,6 +198,7 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
         try {
             List<Mes> lista = empresaManeger.findMeses();
             if (lista != null) {
+                mesAbono.getItems().clear();
                 mesAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboMesAbono"));
                 lista.stream().forEach((mes) -> {
                     mesAbono.getItems().add(mes.getIdMes(), mes.getDescripcion());
@@ -272,6 +284,12 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
                             new PropertyValueFactory<>("fecha")
                     );
 
+                    TableColumn idAbonoCol = new TableColumn("Identificador");
+                    idAbonoCol.setMinWidth(10);
+                    idAbonoCol.setCellValueFactory(
+                            new PropertyValueFactory<>("idAbono")
+                    );
+
                     dataAbono.setItems(abonos);
                     dataAbono.getColumns().addAll(
                             rutempresaCol,
@@ -280,7 +298,8 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
                             mesCol,
                             annoCol,
                             fechaCol,
-                            observacionCol
+                            observacionCol,
+                            idAbonoCol
                     );
                 } else {
                     DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
@@ -301,14 +320,23 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
 
     }
 
-    public void loadDataAbono(MouseEvent event) {
+    private void clean() {
+        monto.setText("");
+        observacion.setText("");
+        nrecibo.setText("");
+        cargaPeriodos();
+        loadMeses();
+        fecha.setValue(null);
+    }
+
+    @FXML
+    private void loadDataAbono(MouseEvent event) {
         if (event.isPrimaryButtonDown() && event.getClickCount() == 1) {
             if (dataAbono.getSelectionModel().getSelectedItem() != null) {
                 monto.setText(dataAbono.getSelectionModel().getSelectedItem().getMonto());
                 observacion.setText(dataAbono.getSelectionModel().getSelectedItem().getObservacion());
                 nrecibo.setText(dataAbono.getSelectionModel().getSelectedItem().getNrecibo());
                 annioAbono.setValue(dataAbono.getSelectionModel().getSelectedItem().getAnno());
-                //mesAbono.setValue(DateUtils.stringMonth2intMonth(dataAbono.getSelectionModel().getSelectedItem().getMes()));
                 mesAbono.setValue(dataAbono.getSelectionModel().getSelectedItem().getMes());
                 fecha.setValue(DateUtils.string2date(dataAbono.getSelectionModel().getSelectedItem().getFecha()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             }

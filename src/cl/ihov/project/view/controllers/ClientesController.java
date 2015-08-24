@@ -1,7 +1,6 @@
 package cl.ihov.project.view.controllers;
 
 import cl.ihov.project.common.initial.MainProject;
-import cl.ihov.project.view.components.ReportViewComponent;
 import cl.ihov.project.view.utils.DialogUtils;
 import java.net.URL;
 import java.util.ResourceBundle;

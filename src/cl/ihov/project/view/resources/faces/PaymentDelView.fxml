@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="UserAvatar" prefHeight="411.0" prefWidth="810.0" rotate="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.ihov.project.view.controllers.PaymentDelController">
+  <children>
+    <Label fx:id="label" layoutX="325.0" layoutY="34.0" text="Eliminar Abono">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+    <Button fx:id="goHomeP" layoutX="14.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleAbonos" text="Volver a Gestión de Abonos" />
+      <TableView fx:id="dataAbono" layoutX="25.0" layoutY="111.0" onMousePressed="#loadDataAbono" prefHeight="215.0" prefWidth="756.0" />
+      <Button fx:id="doPayment" layoutX="673.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleDeleteAbono" text="Eliminar abono" />
+      <TextField fx:id="rutBusca" layoutX="307.0" layoutY="69.0" promptText="Rut Empresa" />
+      <Button fx:id="buscarAbono" layoutX="476.0" layoutY="70.0" mnemonicParsing="false" onAction="#buscaAbonosEditar" text="Buscar" />
+      <TextField fx:id="registroElimina" editable="false" layoutX="24.0" layoutY="350.0" prefHeight="27.0" prefWidth="628.0" />
+      <Label layoutX="25.0" layoutY="333.0" text="Registro a eliminar" />
+  </children>
+  <stylesheets>
+    <URL value="@../css/style.css" />
+  </stylesheets>
+</AnchorPane>

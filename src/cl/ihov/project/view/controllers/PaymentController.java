@@ -107,7 +107,7 @@ public class PaymentController extends PaymentViewComponent implements Initializ
                                                 "Éxito",
                                                 "Ingreso OK",
                                                 "La información fue ingresada correctamente.");
-                                        mainProject.showMainMenu();
+                                        mainProject.showAbonos();
                                     } catch (DataException ex) {
                                         DialogUtils.showExceptionDialog(
                                                 "Error",

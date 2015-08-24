@@ -41,6 +41,7 @@ public class AbonoManagerImpl implements AbonoManager {
 
     @Override
     public void deleteAbono(Abono abono) throws DataException {
+        abono.setIdAbonoInt(Integer.valueOf(abono.getIdAbono()));
         adminClientesMapper.deleteAbono(abono);
     }
 
