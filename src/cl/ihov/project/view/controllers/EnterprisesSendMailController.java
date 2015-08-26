@@ -111,18 +111,6 @@ public class EnterprisesSendMailController extends EnterprisesSendMailViewCompon
                 );
 
                 dataEmpresas.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-//                ObservableList<TablePosition> selectedCells = FXCollections.observableArrayList();
-//                dataEmpresas.setOnMousePressed((MouseEvent event) -> {
-//                    selectedCells.add(
-//                            dataEmpresas.getSelectionModel().getSelectedCells().get(
-//                                    dataEmpresas.getSelectionModel().getSelectedCells().size() - 1
-//                            )
-//                    );
-//                    selectedCells.stream().forEach((tp) -> {
-//                        dataEmpresas.getSelectionModel().select(tp.getRow(), tp.getTableColumn());
-//                    });
-//                });
             } else {
                 DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                         "Error",
@@ -175,8 +163,8 @@ public class EnterprisesSendMailController extends EnterprisesSendMailViewCompon
                 }
             });
 
-            final String from = "contactoweb@uv.cl";
-            final String password = "81403742";
+            final String from = "correo@gmail.com";
+            final String password = "password";
             final String subject = "DEDUDORES CULIAOS";
             final String body = "Estimados CTM<strong><em>Alguna wea</em></strong><strong><em>Alguna otra wea</em></strong>";
             final HashMap<Object, Object> proBar = new HashMap<>();
