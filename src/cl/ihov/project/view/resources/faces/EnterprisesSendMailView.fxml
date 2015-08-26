@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="UserAvatar" prefHeight="377.0" prefWidth="810.0" rotate="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.ihov.project.view.controllers.EnterprisesSendMailController">
+    <children>
+        <Button fx:id="goHome" layoutX="21.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleEmpresas" text="Volver a Gestión de Empresas" />
+      <TableView fx:id="dataEmpresas" layoutX="32.0" layoutY="83.0" prefHeight="263.0" prefWidth="755.0" />
+      <Label layoutX="319.0" layoutY="35.0" text="ENVIAR CORREOS">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="sendMail" layoutX="696.0" layoutY="368.0" mnemonicParsing="false" onAction="#sendMail" text="Enviar correos" />
+      <ProgressBar fx:id="progreso" layoutX="32.0" layoutY="372.0" prefWidth="200.0" progress="0.0" />
+      <Label fx:id="progresoLabel" layoutX="244.0" layoutY="371.0" prefHeight="17.0" prefWidth="289.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

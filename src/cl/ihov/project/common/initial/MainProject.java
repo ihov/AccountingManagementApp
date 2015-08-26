@@ -8,6 +8,7 @@ import cl.ihov.project.view.controllers.ClientesController;
 import cl.ihov.project.view.controllers.EmpresasController;
 import cl.ihov.project.view.controllers.EnterprisesController;
 import cl.ihov.project.view.controllers.EnterprisesEditController;
+import cl.ihov.project.view.controllers.EnterprisesSendMailController;
 import cl.ihov.project.view.controllers.ListClientsController;
 import cl.ihov.project.view.controllers.ListDebtorsController;
 import cl.ihov.project.view.controllers.ListPaymentsController;
@@ -271,6 +272,26 @@ public class MainProject extends Application {
             mainView.setCenter(reportOverview);
 
             EnterprisesEditController enterpriseController = loader.getController();
+            enterpriseController.setMainProject(this);
+
+            doFeaturesStage("Gestión de Empresas", 520, 860);
+        } catch (IOException e) {
+            DialogUtils.showExceptionDialog(
+                    "Error",
+                    "Se ha producido un error inesperado",
+                    "El detalle de la excepción se presenta \na continuación",
+                    new DataException(e));
+        }
+    }
+    
+    public void showEnvioCorreo() {
+        try {
+            FXMLLoader loader = ViewUtils.getFXMLLoader("EnterprisesSendMailView");
+            AnchorPane reportOverview = (AnchorPane) loader.load();
+
+            mainView.setCenter(reportOverview);
+
+            EnterprisesSendMailController enterpriseController = loader.getController();
             enterpriseController.setMainProject(this);
 
             doFeaturesStage("Gestión de Empresas", 520, 860);

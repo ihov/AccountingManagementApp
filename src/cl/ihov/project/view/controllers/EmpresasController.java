@@ -25,6 +25,11 @@ public class EmpresasController implements Initializable {
     private void handleEmpresas(ActionEvent event) {
         mainProject.showEmpresas();
     }
+    
+    @FXML
+    private void handleGoEnvioCorreo(ActionEvent event){
+        mainProject.showEnvioCorreo();
+    }
 
     public void showAuthError() {
         DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,

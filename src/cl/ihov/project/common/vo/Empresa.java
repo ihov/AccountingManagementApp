@@ -63,13 +63,13 @@ public class Empresa {
         this.activo = new SimpleStringProperty(activo);
         this.razonSocial = new SimpleStringProperty();
     }
-
+    
     public String getRutCliente() {
-         return rutCliente.get();
+        return rutCliente.get();
     }
 
     public void setRutCliente(String rutCliente) {
-       this.rutCliente.set(rutCliente != null ? rutCliente.trim() : "");
+        this.rutCliente.set(rutCliente != null ? rutCliente.trim() : "");
     }
 
     public String getRutEmpresa() {
@@ -133,7 +133,7 @@ public class Empresa {
     }
 
     public void setIdCuenta(String idCuenta) {
-        this.idCuenta.set(idCuenta != null ? idCuenta.trim() : "" );
+        this.idCuenta.set(idCuenta != null ? idCuenta.trim() : "");
     }
 
     public String getClaveSii() {
@@ -181,15 +181,15 @@ public class Empresa {
     }
 
     public void setRutAnterior(String rutAnterior) {
-        this.rutAnterior.set( rutAnterior != null ? rutAnterior.trim() : "");
+        this.rutAnterior.set(rutAnterior != null ? rutAnterior.trim() : "");
     }
-    
-    public String getRazonSocial(){
+
+    public String getRazonSocial() {
         return razonSocial.get();
     }
-    
-    public void setRazonSocial(String razonSocial){
-        this.razonSocial.set(razonSocial != null ? razonSocial.trim(): "");
+
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial.set(razonSocial != null ? razonSocial.trim() : "");
     }
 
     public int getIdContabilidadInt() {

@@ -192,10 +192,6 @@ public class PaymentDelController extends PaymentDelViewComponent implements Ini
                         + " | Fecha: "
                         + dataAbono.getSelectionModel().getSelectedItem().getFecha()
                 );
-//                DialogUtils.showSimpleDialog(DialogUtils.INFORMATION_DIALOG,
-//                        "Información",
-//                        "¿Desea eliminar éste registro?",
-//                        "Presione el botón -Eliminar abono- para confirmar la acción.");
             }
         }
     }
@@ -210,7 +206,6 @@ public class PaymentDelController extends PaymentDelViewComponent implements Ini
                     abonoManeger.deleteAbono(abonoEmpresa);
                     buscaAbonosEditar(event);
                     registroElimina.setText("");
-                    //mainProject.showAbonos();
                     DialogUtils.showSimpleDialog(DialogUtils.INFORMATION_DIALOG,
                             "Éxito",
                             "Eliminación OK",

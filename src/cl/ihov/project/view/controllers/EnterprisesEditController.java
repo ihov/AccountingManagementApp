@@ -196,7 +196,7 @@ public class EnterprisesEditController extends EnterprisesEditViewComponent impl
                                                                         "Éxito",
                                                                         "Edición OK",
                                                                         "La información fue modificada correctamente.");
-                                                                mainProject.showMainMenu();
+                                                                mainProject.showEmpresas();
                                                             } catch (DataException ex) {
                                                                 DialogUtils.showExceptionDialog(
                                                                         "Error",
