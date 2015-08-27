@@ -11,6 +11,7 @@ import cl.ihov.project.view.controllers.EnterprisesEditController;
 import cl.ihov.project.view.controllers.EnterprisesSendMailController;
 import cl.ihov.project.view.controllers.ListClientsController;
 import cl.ihov.project.view.controllers.ListDebtorsController;
+import cl.ihov.project.view.controllers.ListEmpresasController;
 import cl.ihov.project.view.controllers.ListPaymentsController;
 import cl.ihov.project.view.controllers.LoginController;
 import cl.ihov.project.view.controllers.MainController;
@@ -355,6 +356,26 @@ public class MainProject extends Application {
             listClientsController.setMainProject(this);
 
             doFeaturesStage("Lista de Clientes", 660, 850);
+        } catch (IOException e) {
+            DialogUtils.showExceptionDialog(
+                    "Error",
+                    "Se ha producido un error inesperado",
+                    "El detalle de la excepción se presenta \na continuación",
+                    new DataException(e));
+        }
+    }
+    
+    public void showListReportEmpresasView() {
+        try {
+            FXMLLoader loader = ViewUtils.getFXMLLoader("ListEmpresasView");
+            AnchorPane reportOverview = (AnchorPane) loader.load();
+
+            mainView.setCenter(reportOverview);
+
+            ListEmpresasController listEmpresasController = loader.getController();
+            listEmpresasController.setMainProject(this);
+
+            doFeaturesStage("Lista de Empresas", 660, 850);
         } catch (IOException e) {
             DialogUtils.showExceptionDialog(
                     "Error",

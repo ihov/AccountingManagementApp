@@ -40,4 +40,10 @@ public class ReportController extends ReportViewComponent implements Initializab
     private void handleGoListPayment(ActionEvent event) {
         mainProject.showListReportPaymentsView();
     }
+    
+    @FXML
+    private void handleGoListEmpresas(ActionEvent event){
+        mainProject.showListReportEmpresasView();
+    } 
+        
 }

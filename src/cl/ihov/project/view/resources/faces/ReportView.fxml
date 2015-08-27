@@ -15,10 +15,11 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-     <Button fx:id="goHome" layoutX="14.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleGoHome" text="Volver  a Menu Principal" />
-     <Button fx:id="goListClient" layoutX="39.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleGoListClient" prefHeight="74.0" prefWidth="146.0" text="Listado de Clientes" />
-     <Button fx:id="goListPayment" layoutX="209.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleGoListPayment" prefHeight="74.0" prefWidth="146.0" text="Listado de Abonos" />
-     <Button fx:id="goListDebtor" layoutX="367.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleGoListDebtor" prefHeight="74.0" prefWidth="146.0" text="Listado de Deudores" />
+     <Button fx:id="goHome" layoutX="15.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleGoHome" text="Volver  a Menu Principal" />
+     <Button fx:id="goListClient" layoutX="129.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleGoListClient" prefHeight="74.0" prefWidth="146.0" text="Listado de Clientes" />
+     <Button fx:id="goListPayment" layoutX="129.0" layoutY="186.0" mnemonicParsing="false" onAction="#handleGoListPayment" prefHeight="74.0" prefWidth="146.0" text="Listado de Abonos" />
+     <Button fx:id="goListDebtor" layoutX="319.0" layoutY="186.0" mnemonicParsing="false" onAction="#handleGoListDebtor" prefHeight="74.0" prefWidth="146.0" text="Listado de Deudores" />
+      <Button fx:id="goListEmpresa" layoutX="319.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleGoListEmpresas" prefHeight="74.0" prefWidth="146.0" text="Listado de Empresas" />
   </children>
   <stylesheets>
     <URL value="@../css/style.css" />
