@@ -38,6 +38,11 @@ public class EmpresaManagerImpl implements EmpresaManager {
                 lista.setIdContabilidad(String.valueOf(lista.getIdContabilidadInt()));
                 lista.setIdCuenta(String.valueOf(lista.getIdCuentaInt()));
                 lista.setValorMensual(String.valueOf(lista.getValorMensualInt()));
+                if (lista.getActivo().equals("true")) {
+                    lista.setActivo("Si");
+                } else {
+                    lista.setActivo("No");
+                }
             }
         }
         return listaEmpresa;
@@ -46,10 +51,13 @@ public class EmpresaManagerImpl implements EmpresaManager {
     @Override
     public Empresa findEmpresa(Empresa empresa) throws DataException {
         Empresa emp = adminClientesMapper.selectEmpresa(empresa);
-        emp.setIdBanco(String.valueOf(emp.getIdBancoInt()));
-        emp.setIdContabilidad(String.valueOf(emp.getIdContabilidadInt()));
-        emp.setIdCuenta(String.valueOf(emp.getIdCuentaInt()));
-        emp.setValorMensual(String.valueOf(emp.getValorMensualInt()));
+        if (emp != null) {
+            emp.setIdBanco(String.valueOf(emp.getIdBancoInt()));
+            emp.setIdContabilidad(String.valueOf(emp.getIdContabilidadInt()));
+            emp.setIdCuenta(String.valueOf(emp.getIdCuentaInt()));
+            emp.setValorMensual(String.valueOf(emp.getValorMensualInt()));
+        }
+
         return emp;
     }
 
@@ -77,7 +85,7 @@ public class EmpresaManagerImpl implements EmpresaManager {
     }
 
     @Override
-    public List<Mes> findMeses() throws DataException{
+    public List<Mes> findMeses() throws DataException {
         return (adminClientesMapper.selectMes());
     }
 }

@@ -207,6 +207,7 @@ public class PaymentController extends PaymentViewComponent implements Initializ
                     e.setRutEmpresa(c.getRutEmpresa());
                     e.setGiroComercial(c.getGiroComercial());
                     e.setValorMensual(c.getValorMensual());
+                    e.setActivo(c.getActivo());
                     empresas.add(e);
                 });
 
@@ -239,6 +240,12 @@ public class PaymentController extends PaymentViewComponent implements Initializ
                 valorMensualCol.setCellValueFactory(
                         new PropertyValueFactory<>("valorMensual")
                 );
+                
+                TableColumn activoCol = new TableColumn("Activo");
+                activoCol.setMinWidth(100);
+                activoCol.setCellValueFactory(
+                        new PropertyValueFactory<>("activo")
+                );
 
                 dataEmpresa.setItems(empresas);
                 dataEmpresa.getColumns().addAll(
@@ -246,7 +253,8 @@ public class PaymentController extends PaymentViewComponent implements Initializ
                         rutEmprersaCol,
                         razonSocialCol,
                         giroComercialCol,
-                        valorMensualCol
+                        valorMensualCol,
+                        activoCol
                 );
             } else {
                 DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
