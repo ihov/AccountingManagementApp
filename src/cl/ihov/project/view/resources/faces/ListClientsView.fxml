@@ -14,10 +14,10 @@
    <children>
       <Button fx:id="goReportes" layoutX="21.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleGoReports" text="Volver a Menú Reportes" />
       <TableView fx:id="dataCliente" layoutX="22.0" layoutY="75.0" prefHeight="480.0" prefWidth="795.0" />
-      <Button fx:id="clientAll" layoutX="21.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleReportAllClient" text="Todos" />
-      <Button fx:id="clientActive" layoutX="113.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleReportClientEnable" text="Activos" />
-      <Button fx:id="clientInactive" layoutX="201.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleReportClientDisable" text="Inactivos" />
-      <Label layoutX="22.0" layoutY="566.0" text="Generar reportes">
+      <Button fx:id="clientAll" layoutX="21.0" layoutY="574.0" mnemonicParsing="false" onAction="#handleReportAllClient" text="Todos" />
+      <!--Button fx:id="clientActive" layoutX="104.0" layoutY="574.0" mnemonicParsing="false" onAction="#handleReportClientEnable" text="Activos" /-->
+      <!--Button fx:id="clientInactive" layoutX="193.0" layoutY="574.0" mnemonicParsing="false" onAction="#handleReportClientDisable" text="Inactivos" /-->
+      <Label layoutX="280.0" layoutY="34.0" text="GENERAR REPORTES CLIENTES">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

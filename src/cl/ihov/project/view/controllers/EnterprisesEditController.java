@@ -71,6 +71,7 @@ public class EnterprisesEditController extends EnterprisesEditViewComponent impl
                             "Rut incorrecto",
                             "El rut " + rutBusca.getText() + " no es válido. \nIntente nuevamente (Ejemplo: 12345678-9).");
                     rutBusca.setText("");
+                    limpiaForm();
                 }
             }
         });
@@ -153,7 +154,7 @@ public class EnterprisesEditController extends EnterprisesEditViewComponent impl
     private void handleGoHome(ActionEvent event) {
         mainProject.showMainMenu();
     }
-    
+
     @FXML
     private void handleEmpresas(ActionEvent event) {
         mainProject.showEmpresas();
@@ -312,6 +313,7 @@ public class EnterprisesEditController extends EnterprisesEditViewComponent impl
                             "Información",
                             "Rut No encontrado",
                             "El rut del cliente no se encuentra en la base de datos.");
+                    limpiaForm();
                 }
             } catch (DataException ex) {
                 DialogUtils.showExceptionDialog(
@@ -325,6 +327,24 @@ public class EnterprisesEditController extends EnterprisesEditViewComponent impl
                     "Información",
                     "RUT",
                     "Debe ingresar un rut para realizar la búsqueda.");
+            limpiaForm();
         }
+    }
+
+    private void limpiaForm() {
+        rutEmpresa.setText("");
+        giroComercial.setText("");
+        comuna.setText("");
+        direccion.setText("");
+        idBanco.getSelectionModel().select(Integer.valueOf("0"));
+        idCuenta.getSelectionModel().select(Integer.valueOf("0"));
+        nroCuenta.setText("");
+        claveSii.setText("");
+        clavePrevired.setText("");
+        claveOtro.setText("");
+        idContabilidad.getSelectionModel().select(Integer.valueOf("0"));
+        valorMensual.setText("");
+        activo.setSelected(false);
+        razonSocial.setText("");
     }
 }

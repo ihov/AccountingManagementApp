@@ -106,7 +106,7 @@ Text {
 }
 
 .check-box:disabled {
-    -fx-opacity: -fx-disabled-opacity;
+  /*  -fx-opacity: -fx-disabled-opacity;*/
 }
 
 .check-box:show-mnemonics .mnemonic-underline {
@@ -162,7 +162,7 @@ Text {
 }
 
 .text-field:disabled {
-    -fx-opacity: -fx-disabled-opacity;
+  /*  -fx-opacity: -fx-disabled-opacity;*/
 }
 
 /*******************************************************************************
