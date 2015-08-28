@@ -1,13 +1,16 @@
 package cl.ihov.project.view.controllers;
 
 import cl.ihov.project.common.initial.MainProject;
+import cl.ihov.project.common.utils.BaseJasperReports;
 import cl.ihov.project.view.components.ListPaymentsViewComponent;
 import cl.ihov.project.view.utils.DialogUtils;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import net.sf.jasperreports.engine.JRException;
 
 public class ListPaymentsController extends ListPaymentsViewComponent implements Initializable {
 
@@ -32,5 +35,15 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
     @FXML
     private void handleGoReports(ActionEvent event) {
         mainProject.showReportView();
+    }
+    
+    @FXML
+    private void handleReportAllAbonos(ActionEvent event) {
+        HashMap hm = null;
+        try {
+            BaseJasperReports.createReport("listadoAllEmpresas", hm);
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
     }
 }

@@ -395,7 +395,7 @@ public class MainProject extends Application {
             ListPaymentsController listPaymentsController = loader.getController();
             listPaymentsController.setMainProject(this);
 
-            doFeaturesStage("Lista de Abonos", 420, 660);
+            doFeaturesStage("Lista de Abonos", 660, 850);
         } catch (IOException e) {
             DialogUtils.showExceptionDialog(
                     "Error",
@@ -415,7 +415,7 @@ public class MainProject extends Application {
             ListDebtorsController listDebtorsController = loader.getController();
             listDebtorsController.setMainProject(this);
 
-            doFeaturesStage("Lista de Deudores", 420, 660);
+            doFeaturesStage("Lista de Deudores", 660, 850);
         } catch (IOException e) {
             DialogUtils.showExceptionDialog(
                     "Error",

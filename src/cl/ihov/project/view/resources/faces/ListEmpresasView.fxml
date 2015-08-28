@@ -14,7 +14,7 @@
    <children>
       <Button fx:id="goReportes" layoutX="21.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleGoReports" text="Volver a Menú Reportes" />
       <TableView fx:id="dataEmpresa" layoutX="22.0" layoutY="75.0" prefHeight="480.0" prefWidth="795.0" />
-      <Button fx:id="clientAll" layoutX="23.0" layoutY="571.0" mnemonicParsing="false" onAction="#handleReportAllEmpresas" text="Todos" />
+      <Button fx:id="clientAll" layoutX="23.0" layoutY="571.0" mnemonicParsing="false" onAction="#handleReportAllEmpresas" text="Generar PDF" />
       <Button fx:id="clientActive" layoutX="107.0" layoutY="571.0" mnemonicParsing="false" onAction="#handleReportClientEnable" text="Activos" />
       <Button fx:id="clientInactive" layoutX="199.0" layoutY="571.0" mnemonicParsing="false" onAction="#handleReportClientDisable" text="Inactivos" />
       <Label layoutX="261.0" layoutY="34.0" text="GENERAR REPORTES EMPRESAS">
