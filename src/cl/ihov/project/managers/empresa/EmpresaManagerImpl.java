@@ -88,4 +88,9 @@ public class EmpresaManagerImpl implements EmpresaManager {
     public List<Mes> findMeses() throws DataException {
         return (adminClientesMapper.selectMes());
     }
+
+    @Override
+    public List<Empresa> findDeudores() throws DataException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

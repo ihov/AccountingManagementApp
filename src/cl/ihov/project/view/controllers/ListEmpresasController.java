@@ -60,24 +60,24 @@ public class ListEmpresasController extends ListEmpresasViewComponent implements
     }
 
     @FXML
-    private void handleReportClientEnable(ActionEvent event) {
+    private void handleReportEmpresasEnable(ActionEvent event) {
         HashMap hm = null;
         try {
             hm = new HashMap();
             hm.put("P_ACTIVO", "true");
-            BaseJasperReports.createReport("listadoClientesActivos", hm);
+            BaseJasperReports.createReport("listadoStatusEmpresas", hm);
         } catch (JRException ex) {
             ex.printStackTrace();
         }
     }
 
     @FXML
-    private void handleReportClientDisable(ActionEvent event) {
+    private void handleReportEmpresasDisable(ActionEvent event) {
         HashMap hm = null;
         try {
             hm = new HashMap();
             hm.put("P_ACTIVO", "false");
-            BaseJasperReports.createReport("listadoClientesActivos", hm);
+            BaseJasperReports.createReport("listadoStatusEmpresas", hm);
         } catch (JRException ex) {
             ex.printStackTrace();
         }

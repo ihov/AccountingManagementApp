@@ -20,4 +20,6 @@ public interface EmpresaManager {
     public abstract void deleteEmpresa(Empresa empresa) throws DataException;
 
     public abstract List<Mes> findMeses() throws DataException;
+    
+    public abstract List<Empresa> findDeudores() throws DataException;
 }
