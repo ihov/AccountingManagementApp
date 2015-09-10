@@ -19,4 +19,8 @@ public class ListPaymentsViewComponent {
     
     @FXML
     protected Button buscaAbonos;
+    
+    @FXML
+    protected Button abonosFechas;
+    
 }

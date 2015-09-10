@@ -29,16 +29,19 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
     private MainProject mainProject;
     private AbonoManager abonoManager;
     private ObservableList<Abono> abonos;
+    private Fechas fechas;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         abonoManager = new AbonoManagerImpl();
+        fechas = new Fechas();
     }
 
     public void setMainProject(MainProject mainProject) {
         this.mainProject = mainProject;
         fechaTermino.setEditable(false);
         fechaInicio.setEditable(false);
+
     }
 
     public void showAuthError() {
@@ -56,10 +59,11 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
     @FXML
     private void handleReportAllAbonos(ActionEvent event) {
         HashMap hm = null;
-        hm.put("&P_FECHAINI", "");
-        hm.put("&P_FECHATER", "");
         try {
-            BaseJasperReports.createReport("listadoAbonosEmpresas", hm);
+            hm = new HashMap();
+            hm.put("P_FECHA_DESDE", fechas.getFechaInicio());
+            hm.put("P_FECHA_HASTA", fechas.getFechaTermino());
+            BaseJasperReports.createReport("listadoAbonosEmpresa", hm);
         } catch (JRException ex) {
             ex.printStackTrace();
         }
@@ -73,17 +77,16 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
             if (fechaTermino.getValue() != null && !fechaInicio.getValue().isAfter(fechaTermino.getValue())) {
                 Calendar ca = Calendar.getInstance();
                 ca.set(fechaTermino.getValue().getYear(), fechaTermino.getValue().getMonthValue() - 1, fechaTermino.getValue().getDayOfMonth());
-                Fechas fechas = new Fechas();
                 fechas.setFechaInicio(c.getTime());
                 fechas.setFechaTermino(ca.getTime());
-                if(abonos!=null){
+                if (abonos != null) {
                     abonos.clear();
                     dataAbono.getColumns().clear();
                 }
                 try {
                     List<Abono> lista = abonoManager.findAbonos(fechas);
                     if (lista != null) {
-                        
+
                         abonos = FXCollections.observableArrayList();
 
                         lista.stream().forEach((l) -> {
