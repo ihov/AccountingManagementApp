@@ -140,10 +140,10 @@ public class ListClientsController extends ListClientsViewComponent implements I
                         new PropertyValueFactory<>("celular")
                 );
 
-                TableColumn activoCol = new TableColumn("Activo");
-                activoCol.setCellValueFactory(
-                        new PropertyValueFactory<>("activo")
-                );
+//                TableColumn activoCol = new TableColumn("Activo");
+//                activoCol.setCellValueFactory(
+//                        new PropertyValueFactory<>("activo")
+//                );
 
                 dataCliente.setItems(clientes);
                 dataCliente.getColumns().addAll(
@@ -154,8 +154,9 @@ public class ListClientsController extends ListClientsViewComponent implements I
                         maternoCol,
                         emailCol,
                         telFijoCol,
-                        celularCol,
-                        activoCol);
+                        celularCol
+//                        activoCol
+                        );
             } else {
                 DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                         "Error",
