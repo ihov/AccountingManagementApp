@@ -7,6 +7,7 @@ import cl.ihov.project.common.vo.Cliente;
 import cl.ihov.project.common.vo.Contabilidad;
 import cl.ihov.project.common.vo.Cuenta;
 import cl.ihov.project.common.vo.Empresa;
+import cl.ihov.project.common.vo.Fechas;
 import cl.ihov.project.common.vo.Mes;
 import cl.ihov.project.model.factory.MyBatisFactory;
 import cl.ihov.project.model.mybatis.mapper.interfaces.AdminClientesMapper;
@@ -15,7 +16,6 @@ import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.annotations.Param;
 
 public class ServerAdminClientes extends MyBatisFactory implements AdminClientesMapper {
 
@@ -340,13 +340,13 @@ public class ServerAdminClientes extends MyBatisFactory implements AdminClientes
     }
 
     @Override
-    public List<Abono> selectAbonosEntreFechas(Date ini, Date ter) throws DataException {
+    public List<Abono> selectAbonosEntreFechas(Fechas fechas) throws DataException {
         List<Abono> listaAbonos;
         SqlSessionFactory sqlSessionFactory = MyBatisFactory.getConnexionSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
             AdminClientesMapper mapper = session.getMapper(AdminClientesMapper.class);
-            listaAbonos = mapper.selectAbonosEntreFechas(ini,ter);//enviar 2 parametros
+            listaAbonos = mapper.selectAbonosEntreFechas(fechas);
         } catch (Exception ex) {
             throw new DataException(ex.getMessage(), ex.getCause());
         } finally {
@@ -355,10 +355,4 @@ public class ServerAdminClientes extends MyBatisFactory implements AdminClientes
         }
         return listaAbonos;
     }
-
-//    public interface UserMapper {
-//
-//        user selectUser(@Param("username") String usrename,
-//                @Param("hashedPassword") String hashedPassword);
-//    }
 }

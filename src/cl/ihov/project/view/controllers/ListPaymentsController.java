@@ -4,6 +4,7 @@ import cl.ihov.project.common.exception.DataException;
 import cl.ihov.project.common.initial.MainProject;
 import cl.ihov.project.common.utils.BaseJasperReports;
 import cl.ihov.project.common.vo.Abono;
+import cl.ihov.project.common.vo.Fechas;
 import cl.ihov.project.managers.abono.AbonoManager;
 import cl.ihov.project.managers.abono.AbonoManagerImpl;
 import cl.ihov.project.view.components.ListPaymentsViewComponent;
@@ -36,6 +37,8 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
 
     public void setMainProject(MainProject mainProject) {
         this.mainProject = mainProject;
+        fechaTermino.setEditable(false);
+        fechaInicio.setEditable(false);
     }
 
     public void showAuthError() {
@@ -53,8 +56,10 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
     @FXML
     private void handleReportAllAbonos(ActionEvent event) {
         HashMap hm = null;
+        hm.put("&P_FECHAINI", "");
+        hm.put("&P_FECHATER", "");
         try {
-            BaseJasperReports.createReport("listadoAllEmpresas", hm);
+            BaseJasperReports.createReport("listadoAbonosEmpresas", hm);
         } catch (JRException ex) {
             ex.printStackTrace();
         }
@@ -65,13 +70,20 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
         if (fechaInicio.getValue() != null) {
             Calendar c = Calendar.getInstance();
             c.set(fechaInicio.getValue().getYear(), fechaInicio.getValue().getMonthValue() - 1, fechaInicio.getValue().getDayOfMonth());
-            if (fechaTermino.getValue() != null) {
+            if (fechaTermino.getValue() != null && !fechaInicio.getValue().isAfter(fechaTermino.getValue())) {
                 Calendar ca = Calendar.getInstance();
                 ca.set(fechaTermino.getValue().getYear(), fechaTermino.getValue().getMonthValue() - 1, fechaTermino.getValue().getDayOfMonth());
+                Fechas fechas = new Fechas();
+                fechas.setFechaInicio(c.getTime());
+                fechas.setFechaTermino(ca.getTime());
+                if(abonos!=null){
+                    abonos.clear();
+                    dataAbono.getColumns().clear();
+                }
                 try {
-                    List<Abono> lista = abonoManager.findAbonos(c.getTime(), ca.getTime());
+                    List<Abono> lista = abonoManager.findAbonos(fechas);
                     if (lista != null) {
-
+                        
                         abonos = FXCollections.observableArrayList();
 
                         lista.stream().forEach((l) -> {
@@ -164,14 +176,14 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
             } else {
                 DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                         "Error",
-                        "Fecha de inicio",
-                        "El registro fecha del abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+                        "Fecha de término",
+                        "El registro fecha de término no puede estar vacío y no debe ser menor que la fecha de inicio.");
             }
         } else {
             DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                     "Error",
                     "Fecha de inicio",
-                    "El registro fecha del abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+                    "El registro fecha de inicio no puede estar vacío.");
         }
     }
 }

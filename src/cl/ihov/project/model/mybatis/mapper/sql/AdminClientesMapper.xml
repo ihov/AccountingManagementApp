@@ -104,13 +104,13 @@
         rutempresa = #{rutEmpresa,jdbcType=VARCHAR} 
     </select>
     
-    <select id="selectAbonosEntreFechas" resultMap="abonoResultMap" parameterType="map">   <!--tomar 2 parametros-->
+    <select id="selectAbonosEntreFechas" resultMap="abonoResultMap" parameterType="cl.ihov.project.common.vo.Fechas">   <!--tomar 2 parametros-->
         SELECT
         <include refid="expressionAbono"/>
         FROM
         abono
         WHERE
-        fecha_mov between  #{ini} and #{ter} 
+        fecha_mov between  #{fechaInicio,jdbcType=DATE} and #{fechaTermino ,jdbcType=DATE} 
     </select>
     
     <select id="selectAbonoCliente" resultMap="abonoResultMap" parameterType="cl.ihov.project.common.vo.Abono">   
