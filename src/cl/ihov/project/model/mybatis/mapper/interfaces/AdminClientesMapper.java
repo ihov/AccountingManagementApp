@@ -8,6 +8,7 @@ import cl.ihov.project.common.vo.Contabilidad;
 import cl.ihov.project.common.vo.Cuenta;
 import cl.ihov.project.common.vo.Empresa;
 import cl.ihov.project.common.vo.Mes;
+import java.util.Date;
 import java.util.List;
 
 public interface AdminClientesMapper {
@@ -51,5 +52,7 @@ public interface AdminClientesMapper {
     public void deleteAbono(Abono abono) throws DataException;
     
     public List<Mes> selectMes() throws DataException;
+
+    public List<Abono> selectAbonosEntreFechas(Date ini, Date ter) throws DataException;
 
 }

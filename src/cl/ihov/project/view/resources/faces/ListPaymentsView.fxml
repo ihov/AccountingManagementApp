@@ -24,7 +24,12 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label> 
-        <TableView fx:id="dataEmpresa" layoutX="22.0" layoutY="75.0" prefHeight="480.0" prefWidth="795.0" />
-        <Button fx:id="clientAll" layoutX="23.0" layoutY="571.0" mnemonicParsing="false" onAction="#handleReportAllAbonos" text="Generar PDF" />    
+        <TableView fx:id="dataEmpresa" layoutX="26.0" layoutY="158.0" prefHeight="391.0" prefWidth="795.0" />
+        <Button fx:id="clientAll" layoutX="23.0" layoutY="571.0" mnemonicParsing="false" onAction="#handleReportAllAbonos" text="Generar PDF" />
+      <DatePicker fx:id="fechaInicio" layoutX="169.0" layoutY="106.0" />
+      <DatePicker fx:id="fechaTermino" layoutX="449.0" layoutY="106.0" />
+      <Label layoutX="172.0" layoutY="83.0" text="Fecha inicio" />
+      <Label layoutX="449.0" layoutY="83.0" text="Fecha término" />
+      <Button fx:id="buscaAbonos" layoutX="705.0" layoutY="106.0" mnemonicParsing="false" onAction="#handleFindAbonos" text="Buscar" />    
     </children>
 </AnchorPane>

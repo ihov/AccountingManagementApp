@@ -11,9 +11,11 @@ import cl.ihov.project.common.vo.Mes;
 import cl.ihov.project.model.factory.MyBatisFactory;
 import cl.ihov.project.model.mybatis.mapper.interfaces.AdminClientesMapper;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.annotations.Param;
 
 public class ServerAdminClientes extends MyBatisFactory implements AdminClientesMapper {
 
@@ -188,7 +190,7 @@ public class ServerAdminClientes extends MyBatisFactory implements AdminClientes
         SqlSessionFactory sqlSessionFactory = MyBatisFactory.getConnexionSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            AdminClientesMapper mapper = session.getMapper(AdminClientesMapper.class);            
+            AdminClientesMapper mapper = session.getMapper(AdminClientesMapper.class);
             mapper.insertEmpresa(empresa);
         } catch (Exception ex) {
             throw new DataException(ex.getMessage(), ex.getCause());
@@ -321,7 +323,7 @@ public class ServerAdminClientes extends MyBatisFactory implements AdminClientes
     }
 
     @Override
-    public List<Mes> selectMes() throws DataException{
+    public List<Mes> selectMes() throws DataException {
         List<Mes> listaMeses = new ArrayList<>();
         SqlSessionFactory sqlSessionFactory = MyBatisFactory.getConnexionSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();
@@ -336,4 +338,27 @@ public class ServerAdminClientes extends MyBatisFactory implements AdminClientes
         }
         return listaMeses;
     }
+
+    @Override
+    public List<Abono> selectAbonosEntreFechas(Date ini, Date ter) throws DataException {
+        List<Abono> listaAbonos;
+        SqlSessionFactory sqlSessionFactory = MyBatisFactory.getConnexionSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            AdminClientesMapper mapper = session.getMapper(AdminClientesMapper.class);
+            listaAbonos = mapper.selectAbonosEntreFechas(ini,ter);//enviar 2 parametros
+        } catch (Exception ex) {
+            throw new DataException(ex.getMessage(), ex.getCause());
+        } finally {
+            session.clearCache();
+            session.close();
+        }
+        return listaAbonos;
+    }
+
+//    public interface UserMapper {
+//
+//        user selectUser(@Param("username") String usrename,
+//                @Param("hashedPassword") String hashedPassword);
+//    }
 }
