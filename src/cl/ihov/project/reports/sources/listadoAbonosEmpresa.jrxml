@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-09-11T20:26:28 -->
+<!-- 2015-09-11T20:41:48 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoAbonosEmpresa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0f015c62-a8c3-4b65-80fc-5a1579af7157">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="VikyDB"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -12,12 +12,12 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
-	<parameter name="P_FECHA_DESDE" class="java.util.Date"/>
-	<parameter name="P_FECHA_HASTA" class="java.util.Date"/>
+	<parameter name="P_FECHA_DESDE" class="java.lang.String"/>
+	<parameter name="P_FECHA_HASTA" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[select a.rutempresa,a.monto,a.nrecibo,a.fecha_mov,e.girocomercial,e.razonsocial 
 from abono a, empresa e
-where a.fecha_mov between  $P{P_FECHA_DESDE}  and  $P{P_FECHA_HASTA} 
+where a.fecha_mov between   to_date($P{P_FECHA_DESDE},'DD/mm/YYYY')  and  to_date($P{P_FECHA_HASTA},'DD/mm/YYYY') 
 order by fecha_mov desc]]>
 	</queryString>
 	<field name="rutempresa" class="java.lang.String"/>
