@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.1.0.final using JasperReports Library version 6.1.0  -->
-<!-- 2015-09-09T21:44:34 -->
+<!-- 2015-09-11T19:30:40 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoAbonosEmpresa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0f015c62-a8c3-4b65-80fc-5a1579af7157">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="VikyDB"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -244,7 +244,7 @@ order by fecha_mov desc]]>
 				<textElement verticalAlignment="Middle">
 					<font size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[" "+$F{fecha_mov}.getDay()+"-"+$F{fecha_mov}.getMonth()+"-"+YEAR($F{fecha_mov})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{fecha_mov}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
