@@ -44,7 +44,7 @@ public class PaymentController extends PaymentViewComponent implements Initializ
         loadDataEmpresas();
         loadMeses();
         cargaPeriodos();
-        fecha.setEditable(false);
+        //fecha.setEditable(false);
 
         monto.focusedProperty().addListener((ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) -> {
             if (!newPropertyValue && !monto.getText().isEmpty()) {
@@ -97,10 +97,10 @@ public class PaymentController extends PaymentViewComponent implements Initializ
                             abonoEmpresa.setMes(String.valueOf(mesAbono.getSelectionModel().getSelectedIndex()));
                             if (annioAbono.getValue() != null && !annioAbono.getValue().equals("0")) {
                                 abonoEmpresa.setAnno(annioAbono.getSelectionModel().getSelectedItem());
-                                if (fecha.getValue() != null) {
-                                    Calendar c = Calendar.getInstance();
-                                    c.set(fecha.getValue().getYear(), fecha.getValue().getMonthValue() - 1, fecha.getValue().getDayOfMonth());
-                                    abonoEmpresa.setFechaDate(c.getTime());
+                                //if (fecha.getValue() != null) {
+                                  //  Calendar c = Calendar.getInstance();
+                                   // c.set(fecha.getValue().getYear(), fecha.getValue().getMonthValue() - 1, fecha.getValue().getDayOfMonth());
+                                    //abonoEmpresa.setFechaDate(c.getTime());
                                     try {
                                         abonoManeger.insertAbono(abonoEmpresa);
                                         DialogUtils.showSimpleDialog(DialogUtils.INFORMATION_DIALOG,
@@ -115,12 +115,12 @@ public class PaymentController extends PaymentViewComponent implements Initializ
                                                 "El detalle de la excepción se presenta \na continuación",
                                                 new DataException(ex));
                                     }
-                                } else {
-                                    DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
-                                            "Error",
-                                            "Fecha del abono",
-                                            "El registro fecha del abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
-                                }
+                                //} else {
+                                 //   DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+                                  //          "Error",
+                                   //         "Fecha del abono",
+                                    //        "El registro fecha del abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+                                //}
                             } else {
                                 DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                                         "Error",

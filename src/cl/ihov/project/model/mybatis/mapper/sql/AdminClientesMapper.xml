@@ -110,7 +110,7 @@
         FROM
         abono
         WHERE
-        fecha between  #{fechaInicio,jdbcType=DATE} and #{fechaTermino ,jdbcType=DATE} 
+        fecha_mov between  #{fechaInicio,jdbcType=DATE} and #{fechaTermino ,jdbcType=DATE} 
     </select>
     
     <select id="selectAbonoCliente" resultMap="abonoResultMap" parameterType="cl.ihov.project.common.vo.Abono">   
@@ -264,7 +264,7 @@
         #{observacion,jdbcType=VARCHAR},
         #{mesInt,jdbcType=INTEGER},
         #{annoInt,jdbcType=INTEGER},
-        #{fechaDate,jdbcType=DATE},
+        CURRENT_TIMESTAMP,
         CURRENT_TIMESTAMP)
     </insert>
     

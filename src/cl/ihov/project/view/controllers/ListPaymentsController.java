@@ -61,8 +61,8 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
         HashMap hm = null;
         try {
             hm = new HashMap();
-            hm.put("P_FECHA_DESDE", fechas.getFechaInicio());
-            hm.put("P_FECHA_HASTA", fechas.getFechaTermino());
+            hm.put("P_FECHA_DESDE", DateUtils.date2string(fechas.getFechaInicio()));
+            hm.put("P_FECHA_HASTA", DateUtils.date2string(fechas.getFechaTermino()));
             BaseJasperReports.createReport("listadoAbonosEmpresa", hm);
         } catch (JRException ex) {
             ex.printStackTrace();
@@ -127,19 +127,19 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
                                 new PropertyValueFactory<>("observacion")
                         );
 
-                        TableColumn mesCol = new TableColumn("Mes");
+                        TableColumn mesCol = new TableColumn("Mes de abono");
                         mesCol.setMinWidth(70);
                         mesCol.setCellValueFactory(
                                 new PropertyValueFactory<>("mes")
                         );
 
-                        TableColumn annoCol = new TableColumn("Año");
+                        TableColumn annoCol = new TableColumn("Año de abono");
                         annoCol.setMinWidth(30);
                         annoCol.setCellValueFactory(
                                 new PropertyValueFactory<>("anno")
                         );
 
-                        TableColumn fechaCol = new TableColumn("Fecha");
+                        TableColumn fechaCol = new TableColumn("Fecha movimiento");
                         fechaCol.setMinWidth(70);
                         fechaCol.setCellValueFactory(
                                 new PropertyValueFactory<>("fecha")

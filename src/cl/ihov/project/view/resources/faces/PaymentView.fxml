@@ -19,15 +19,15 @@
       <TableView fx:id="dataEmpresa" layoutX="25.0" layoutY="80.0" prefHeight="246.0" prefWidth="756.0" />
       <TextField fx:id="monto" layoutX="25.0" layoutY="367.0" prefHeight="27.0" prefWidth="148.0" promptText="\$ Monto" />
       <TextField fx:id="nrecibo" layoutX="25.0" layoutY="428.0" prefHeight="27.0" prefWidth="148.0" promptText="Número de recibo" />
-      <DatePicker fx:id="fecha" layoutX="502.0" layoutY="428.0" prefHeight="27.0" prefWidth="150.0" promptText="Fecha" />
+      <!--DatePicker fx:id="fecha" layoutX="502.0" layoutY="428.0" prefHeight="27.0" prefWidth="150.0" promptText="Fecha" /-->
       <Label layoutX="25.0" layoutY="343.0" text="Valor de abono" />
-      <Label layoutX="539.0" layoutY="404.0" text="Fecha del abono" />
+      <!--Label layoutX="539.0" layoutY="404.0" text="Fecha del abono" /-->
       <Label layoutX="25.0" layoutY="404.0" text="N° recibo de abono" />
       <Button fx:id="doPayment" layoutX="681.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleDoPayment" text="Realizar abono" />
       <Label layoutX="196.0" layoutY="343.0" text="Observación" />
       <TextField fx:id="observacion" layoutX="196.0" layoutY="367.0" prefHeight="27.0" prefWidth="558.0" promptText="Escriba una observación..." />
       <ComboBox fx:id="mesAbono" layoutX="196.0" layoutY="430.0" prefWidth="150.0" />
-      <ComboBox fx:id="annioAbono" layoutX="371.0" layoutY="429.0" prefHeight="26.0" prefWidth="96.0" />
+      <ComboBox fx:id="annioAbono" layoutX="371.0" layoutY="429.0" prefHeight="26.0" prefWidth="179.0" />
       <Label layoutX="196.0" layoutY="404.0" text="Mes de abono" />
       <Label layoutX="371.0" layoutY="404.0" text="Año de abono" />
   </children>
