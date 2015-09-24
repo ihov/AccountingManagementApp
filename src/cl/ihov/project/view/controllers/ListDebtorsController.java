@@ -3,11 +3,15 @@ package cl.ihov.project.view.controllers;
 import cl.ihov.project.common.exception.DataException;
 import cl.ihov.project.common.initial.MainProject;
 import cl.ihov.project.common.utils.BaseJasperReports;
+import cl.ihov.project.common.utils.BaseResources;
 import cl.ihov.project.common.vo.Empresa;
+import cl.ihov.project.common.vo.Mes;
 import cl.ihov.project.managers.empresa.EmpresaManager;
+import cl.ihov.project.managers.empresa.EmpresaManagerImpl;
 import cl.ihov.project.view.components.ListDebtorsViewComponent;
 import cl.ihov.project.view.utils.DialogUtils;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -27,6 +31,11 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        empresaManeger = new EmpresaManagerImpl();
+        mesAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboMesAbono"));
+        annioAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
+        cargaPeriodos();
+        cargaMeses();
 
     }
 
@@ -39,6 +48,40 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
                 "Error",
                 "Usuario o clave incorrecto",
                 "La información ingresada no es correcta. \nIntente nuevamente.");
+    }
+
+    private void cargaPeriodos() {
+        annioAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
+        int cont = 1;
+        int initialYear = 2010;
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int year = currentYear; year >= initialYear; year--) {
+            annioAbono.getItems().add(cont, String.valueOf(year));
+            cont++;
+        }
+    }
+
+    private void cargaMeses() {
+        try {
+            List<Mes> lista = empresaManeger.findMeses();
+            if (lista != null) {
+                mesAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboMesAbono"));
+                lista.stream().forEach((mes) -> {
+                    mesAbono.getItems().add(mes.getIdMes(), mes.getDescripcion());
+                });
+            } else {
+                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+                        "Error",
+                        "Ocurrió un problema",
+                        "Problema . \nIntente nuevamente.");
+            }
+        } catch (DataException ex) {
+            DialogUtils.showExceptionDialog(
+                    "Error",
+                    "Se ha producido un error inesperado",
+                    "El detalle de la excepción se presenta \na continuación",
+                    new DataException(ex));
+        }
     }
 
     @FXML
@@ -55,7 +98,7 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
             ex.printStackTrace();
         }
     }
-    
+
 //    private void loadDataEmpresas() {
 //        try {
 //            List<Empresa> lista = empresaManeger.findAllEmpresa();
@@ -127,5 +170,4 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
 //                    new DataException(ex));
 //        }
 //    }
-
 }

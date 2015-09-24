@@ -26,10 +26,20 @@
         </Label> 
         <TableView fx:id="dataAbono" layoutX="26.0" layoutY="158.0" prefHeight="391.0" prefWidth="795.0" />
         <Button fx:id="abonosFechas" layoutX="23.0" layoutY="571.0" mnemonicParsing="false" onAction="#handleReportAllAbonos" text="Generar PDF" />
-      <DatePicker fx:id="fechaInicio" layoutX="169.0" layoutY="106.0" promptText="Fecha inicio"/>
+      <DatePicker fx:id="fechaInicio" layoutX="169.0" layoutY="106.0" promptText="Fecha inicio" />
       <DatePicker fx:id="fechaTermino" layoutX="449.0" layoutY="106.0" promptText="Fecha término" />
       <Label layoutX="172.0" layoutY="83.0" text="Fecha inicio" />
       <Label layoutX="449.0" layoutY="83.0" text="Fecha término" />
-      <Button fx:id="buscaAbonos" layoutX="705.0" layoutY="106.0" mnemonicParsing="false" onAction="#handleFindAbonos" text="Buscar" />    
+      <Button fx:id="buscaAbonos" layoutX="705.0" layoutY="106.0" mnemonicParsing="false" onAction="#handleFindAbonos" text="Buscar" />
+      <Label fx:id="total" layoutX="278.0" layoutY="575.0" prefHeight="20.0" prefWidth="215.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="156.0" layoutY="573.0" text="Total abonos:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>    
     </children>
 </AnchorPane>

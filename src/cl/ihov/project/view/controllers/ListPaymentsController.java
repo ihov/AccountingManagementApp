@@ -63,6 +63,7 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
             hm = new HashMap();
             hm.put("P_FECHA_DESDE", DateUtils.date2string(fechas.getFechaInicio()));
             hm.put("P_FECHA_HASTA", DateUtils.date2string(fechas.getFechaTermino()));
+            hm.put("P_TOTAL", total.getText());
             BaseJasperReports.createReport("listadoAbonosEmpresa", hm);
         } catch (JRException ex) {
             ex.printStackTrace();
@@ -86,9 +87,12 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
                 try {
                     List<Abono> lista = abonoManager.findAbonos(fechas);
                     if (lista != null) {
-
+                        int cont = 0;
+                        for (Abono l : lista) {
+                            cont = cont + l.getMontoInt();
+                        }
+                        total.setText(String.valueOf(cont));
                         abonos = FXCollections.observableArrayList();
-
                         lista.stream().forEach((l) -> {
                             abonos.add(
                                     new Abono(
