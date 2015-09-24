@@ -9,17 +9,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="UserAvatar" prefHeight="272.0" prefWidth="563.0" rotate="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.ihov.project.view.controllers.ReportController">
+<AnchorPane id="AnchorPane" fx:id="UserAvatar" prefHeight="313.0" prefWidth="563.0" rotate="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.ihov.project.view.controllers.ReportController">
   <children>
-    <Label fx:id="label" layoutX="236.0" layoutY="28.0" text="REPORTES">
+    <Label fx:id="label" layoutX="248.0" layoutY="38.0" text="REPORTES">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
      <Button fx:id="goHome" layoutX="15.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleGoHome" text="Volver  a Menu Principal" />
-     <Button fx:id="goListClient" layoutX="129.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleGoListClient" prefHeight="74.0" prefWidth="146.0" text="Listado de Clientes" />
-     <Button fx:id="goListPayment" layoutX="129.0" layoutY="186.0" mnemonicParsing="false" onAction="#handleGoListPayment" prefHeight="74.0" prefWidth="146.0" text="Listado de Abonos" />
-     <Button fx:id="goListDebtor" layoutX="319.0" layoutY="186.0" mnemonicParsing="false" onAction="#handleGoListDebtor" prefHeight="74.0" prefWidth="146.0" text="Listado de Deudores" />
-      <Button fx:id="goListEmpresa" layoutX="319.0" layoutY="89.0" mnemonicParsing="false" onAction="#handleGoListEmpresas" prefHeight="74.0" prefWidth="146.0" text="Listado de Empresas" />
+     <Button fx:id="goListClient" layoutX="219.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleGoListClient" prefHeight="74.0" prefWidth="146.0" text="Listado de Clientes" />
+     <Button fx:id="goListPayment" layoutX="219.0" layoutY="222.0" mnemonicParsing="false" onAction="#handleGoListPayment" prefHeight="74.0" prefWidth="146.0" text="Listado de Abonos" />
+     <Button fx:id="goListDebtor" layoutX="409.0" layoutY="222.0" mnemonicParsing="false" onAction="#handleGoListDebtor" prefHeight="74.0" prefWidth="146.0" text="Listado de Deudores" />
+      <Button fx:id="goListEmpresa" layoutX="409.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleGoListEmpresas" prefHeight="74.0" prefWidth="146.0" text="Listado de Empresas" />
+      <ImageView fitHeight="97.0" fitWidth="75.0" layoutX="71.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/calculator.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="94.0" fitWidth="89.0" layoutX="64.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/reports.png" />
+         </image>
+      </ImageView>
   </children>
   <stylesheets>
     <URL value="@../css/style.css" />

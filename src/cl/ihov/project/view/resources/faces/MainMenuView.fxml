@@ -15,17 +15,22 @@
     <URL value="@../css/style.css" />
   </stylesheets>
    <children>
-      <Button fx:id="clientes" layoutX="105.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleClientes" prefHeight="82.0" prefWidth="150.0" text="CLIENTES" textAlignment="CENTER">
+      <Button fx:id="clientes" layoutX="105.0" layoutY="82.0" mnemonicParsing="false" onAction="#handleClientes" prefHeight="82.0" prefWidth="150.0" text="CLIENTES" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="abonos" layoutX="105.0" layoutY="209.0" mnemonicParsing="false" onAction="#handleAbonos" prefHeight="82.0" prefWidth="150.0" text="ABONOS" textAlignment="CENTER">
+      <Button fx:id="abonos" layoutX="105.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleAbonos" prefHeight="82.0" prefWidth="150.0" text="ABONOS" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="reportes" layoutX="323.0" layoutY="209.0" mnemonicParsing="false" onAction="#handleReports" prefHeight="82.0" prefWidth="150.0" text="REPORTES" textAlignment="CENTER" />
-      <Button fx:id="empresas" layoutX="323.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleEmpresas" prefHeight="82.0" prefWidth="150.0" text="EMPRESAS" textAlignment="CENTER"/>
+      <Button fx:id="reportes" layoutX="341.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleReports" prefHeight="82.0" prefWidth="150.0" text="REPORTES" textAlignment="CENTER" />
+      <Button fx:id="empresas" layoutX="341.0" layoutY="82.0" mnemonicParsing="false" onAction="#handleEmpresas" prefHeight="82.0" prefWidth="150.0" text="EMPRESAS" textAlignment="CENTER" />
+      <ImageView fitHeight="109.0" fitWidth="94.0" layoutX="247.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/home.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
