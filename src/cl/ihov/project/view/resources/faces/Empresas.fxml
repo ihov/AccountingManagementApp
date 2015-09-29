@@ -13,7 +13,7 @@
         <Button fx:id="goHome" layoutX="21.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleGoHome" text="Volver a Menú Principal" />
         <Button fx:id="empresa" layoutX="300.0" layoutY="102.0" mnemonicParsing="false" onAction="#handleEnterprise" prefHeight="46.0" prefWidth="150.0" text="INGRESAR EMPRESA" />
         <Button fx:id="editEmpresa" layoutX="300.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleGoEditEnterprise" prefHeight="46.0" prefWidth="150.0" text="EDITAR EMPRESA" />
-        <Button fx:id="correo" layoutX="300.0" layoutY="226.0" mnemonicParsing="false" onAction="#handleGoEnvioCorreo" prefHeight="46.0" prefWidth="150.0" text="ENVIAR CORREOS" />
+        <!--Button fx:id="correo" layoutX="300.0" layoutY="226.0" mnemonicParsing="false" onAction="#handleGoEnvioCorreo" prefHeight="46.0" prefWidth="150.0" text="ENVIAR CORREOS" /-->
         <ImageView disable="false" fitHeight="100.0" fitWidth="110.0" layoutX="107.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" smooth="true">
             <image>
                 <Image url="@../images/empresas.png" />

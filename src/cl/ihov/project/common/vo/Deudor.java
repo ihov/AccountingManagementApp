@@ -18,6 +18,7 @@ public class Deudor {
     private final SimpleStringProperty anno;
     private final SimpleStringProperty valorMensual;
     private int valorMensualInt;
+    private String rutCliente;
     
      public Deudor() {
         this.rutEmpresa = new SimpleStringProperty();
@@ -124,5 +125,13 @@ public class Deudor {
 
     public void setMontoInt(int montoInt){
         this.montoAbono.set(String.valueOf(montoInt));
+    }
+
+    public String getRutCliente() {
+        return rutCliente;
+    }
+
+    public void setRutCliente(String rutCliente) {
+        this.rutCliente = rutCliente;
     }
 }

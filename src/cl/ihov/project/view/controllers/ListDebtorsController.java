@@ -4,22 +4,28 @@ import cl.ihov.project.common.exception.DataException;
 import cl.ihov.project.common.initial.MainProject;
 import cl.ihov.project.common.utils.BaseJasperReports;
 import cl.ihov.project.common.utils.BaseResources;
+import cl.ihov.project.common.vo.Cliente;
 import cl.ihov.project.common.vo.Deudor;
 import cl.ihov.project.common.vo.Empresa;
 import cl.ihov.project.common.vo.Mes;
 import cl.ihov.project.managers.abono.AbonoManager;
 import cl.ihov.project.managers.abono.AbonoManagerImpl;
+import cl.ihov.project.managers.cliente.ClienteManager;
+import cl.ihov.project.managers.cliente.ClienteManagerImpl;
 import cl.ihov.project.managers.empresa.EmpresaManager;
 import cl.ihov.project.managers.empresa.EmpresaManagerImpl;
 import cl.ihov.project.view.components.ListDebtorsViewComponent;
 import cl.ihov.project.view.utils.DialogUtils;
+import cl.ihov.project.view.utils.SendMailUtils;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,16 +38,22 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
 
     private MainProject mainProject;
     private EmpresaManager empresaManeger;
+    private ClienteManager clienteManeger;
     private AbonoManager abonoManager;
     private Deudor deudor;
     private ObservableList<Deudor> listaDeudores;
+    private List<Empresa> empresasSelected;
+    private List<Cliente> clientesDeudores;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         empresaManeger = new EmpresaManagerImpl();
         abonoManager = new AbonoManagerImpl();
+        clienteManeger = new ClienteManagerImpl();
         mesAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboMesAbono"));
         annioAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
+        sendMail.setDisable(true);
+        deudoresAll.setDisable(true);
         deudor = new Deudor();
         cargaPeriodos();
         cargaMeses();
@@ -129,7 +141,7 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
                             e.setMontoDebe(c.getMontoDebe());
                             listaDeudores.add(e);
                         });
-                        
+
                         TableColumn rutEmprersaCol = new TableColumn("Rut Empresa");
                         rutEmprersaCol.setMinWidth(100);
                         rutEmprersaCol.setCellValueFactory(
@@ -153,13 +165,13 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
                         valorMensualCol.setCellValueFactory(
                                 new PropertyValueFactory<>("valorMensual")
                         );
-                        
+
                         TableColumn montoAbonoCol = new TableColumn("Monto abono");
                         montoAbonoCol.setMinWidth(100);
                         montoAbonoCol.setCellValueFactory(
                                 new PropertyValueFactory<>("montoAbono")
                         );
-                        
+
                         TableColumn montoDebeCol = new TableColumn("Monto debe");
                         montoDebeCol.setMinWidth(100);
                         montoDebeCol.setCellValueFactory(
@@ -174,7 +186,11 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
                                 montoDebeCol,
                                 valorMensualCol
                         );
-
+                        dataEmpresa.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+                        if (!lista.isEmpty()) {
+                            sendMail.setDisable(false);
+                            deudoresAll.setDisable(false);
+                        }
                     } else {
                         DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                                 "Error",
@@ -201,6 +217,87 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
                     "El registro mes de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
 
         }
+    }
+
+    @FXML
+    private void sendMail(ActionEvent event) {
+        if (DialogUtils.showConfirmDialog("Confirmación", "Envío de correo masivo", "¿Desea enviar los correos?")) {
+            goReportes.setDisable(true);
+            dataEmpresa.setDisable(true);
+            sendMail.setDisable(true);
+            annioAbono.setDisable(true);
+            mesAbono.setDisable(true);
+            buscar.setDisable(true);
+            deudoresAll.setDisable(true);
+            progreso.setProgress(-1.0f);
+            empresasSelected = new ArrayList<>();
+            dataEmpresa.getSelectionModel().getSelectedItems().stream().forEach((empresa) -> {
+                try {
+                    Empresa empresaBuscar = new Empresa();
+                    empresaBuscar.setRutEmpresa(empresa.getRutEmpresa());
+                    empresasSelected.add(empresaManeger.findEmpresa(empresaBuscar));
+                } catch (DataException ex) {
+                    DialogUtils.showExceptionDialog(
+                            "Error",
+                            "Se ha producido un error inesperado",
+                            "El detalle de la excepción se presenta \na continuación",
+                            new DataException(ex));
+                }
+            });
+
+            Cliente cliente = new Cliente();
+            clientesDeudores = new ArrayList<>();
+            empresasSelected.stream().map((empresa) -> {
+                cliente.setRutCliente(empresa.getRutCliente());
+                return empresa;
+            }).forEach((_item) -> {
+                try {
+                    clientesDeudores.add(clienteManeger.findCliente(cliente));
+                } catch (DataException ex) {
+                    DialogUtils.showExceptionDialog(
+                            "Error",
+                            "Se ha producido un error inesperado",
+                            "El detalle de la excepción se presenta \na continuación",
+                            new DataException(ex));
+                }
+            });
+
+            final String from = "ihovlimitada@gmail.com";
+            final String password = "12345678ihov";
+            final String subject = "MENSUALIDAD PENDIENTE";
+            final String body = "Estimado Cliente<strong><br/><br/><em>Le recuerdo que usted tiene una cuota impaga a la fecha de hoy, favor contactarme para saldar la deuda.<br/></em></strong><strong><br/><em>Saludos cordiales</em></strong>";
+            final HashMap<Object, Object> proBar = new HashMap<>();
+
+            Task<Void> task = new Task<Void>() {
+                @Override
+                public Void call() {
+                    dataEmpresa.setDisable(true);
+                    int c = 0;
+                    for (int i = 0; i < clientesDeudores.size(); i++) {
+                        if (!SendMailUtils.send(clientesDeudores.get(i).getEmail().trim(), from, subject, body, password)) {
+                            proBar.put(c, clientesDeudores.get(i).getEmail());
+                            c++;
+                        }
+                        updateProgress(i, clientesDeudores.size() - 1);
+                    }
+                    goReportes.setDisable(false);
+                    dataEmpresa.setDisable(false);
+                    sendMail.setDisable(false);
+                    annioAbono.setDisable(false);
+                    mesAbono.setDisable(false);
+                    buscar.setDisable(false);
+                    deudoresAll.setDisable(false);
+                    return null;
+                }
+            };
+
+            progreso.progressProperty().bind(task.progressProperty());
+            Thread th = new Thread(task);
+            th.setDaemon(true);
+            th.start();
+            dataEmpresa.getSelectionModel().clearSelection();
+        }
+
     }
 
 }

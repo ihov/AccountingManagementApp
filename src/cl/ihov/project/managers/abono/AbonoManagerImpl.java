@@ -86,6 +86,7 @@ public class AbonoManagerImpl implements AbonoManager {
                                 d.setMontoAbono(String.valueOf(suma));
                                 d.setRutEmpresa(di.getRutEmpresa());
                                 d.setValorMensual(String.valueOf(di.getValorMensualInt()));
+                                d.setRutCliente(di.getRutCliente());
                                 listaDeudores.add(d);
                             }
                             suma = 0;
@@ -102,6 +103,7 @@ public class AbonoManagerImpl implements AbonoManager {
                             d.setMontoAbono(String.valueOf(suma));
                             d.setRutEmpresa(di.getRutEmpresa());
                             d.setValorMensual(String.valueOf(di.getValorMensualInt()));
+                            d.setRutCliente(di.getRutCliente());
                             listaDeudores.add(d);
                         }
                         suma = 0;

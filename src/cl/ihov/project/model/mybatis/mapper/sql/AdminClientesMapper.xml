@@ -21,6 +21,7 @@
         <result column="valormensual" property="valorMensualInt" jdbcType="INTEGER" />
         <result column="girocomercial" property="giroComercial" jdbcType="VARCHAR" />
         <result column="razonsocial" property="razonSocial" jdbcType="VARCHAR" />
+        <result column="rutcliente" property="rutCliente" jdbcType="VARCHAR" />
     </resultMap>
     
     <resultMap id="clienteResultMap" type="cl.ihov.project.common.vo.Cliente" >
@@ -106,7 +107,8 @@
         a.monto,
         a.valormensual,
         b.girocomercial,
-        b.razonsocial
+        b.razonsocial,
+        b.rutcliente
     </sql>
     
     <!--SELECT-->

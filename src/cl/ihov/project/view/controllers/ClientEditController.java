@@ -117,7 +117,8 @@ public class ClientEditController extends ClientEditViewComponent implements Ini
                 rut.setText(clientSerched.getRutCliente());
                 telefono.setText(clientSerched.getTelFijo());
                 celular.setText(clientSerched.getCelular());
-                activo.setSelected(Boolean.parseBoolean(clientSerched.getActivo()));
+                //activo.setSelected(Boolean.parseBoolean(clientSerched.getActivo()));
+               cliente.setActivo(String.valueOf(true));
             } else {
                 DialogUtils.showSimpleDialog(DialogUtils.INFORMATION_DIALOG,
                         "Información",
@@ -151,7 +152,8 @@ public class ClientEditController extends ClientEditViewComponent implements Ini
                                 if (celular.getText() != null && !celular.getText().isEmpty()) {
                                     cliente.setCelular(celular.getText().trim());
                                     try {
-                                        cliente.setActivo(String.valueOf(activo.isSelected()));
+                                        //cliente.setActivo(String.valueOf(activo.isSelected()));
+                                        cliente.setActivo(String.valueOf(true));
                                         clienteManager.updateCliente(cliente);
                                         DialogUtils.showSimpleDialog(DialogUtils.INFORMATION_DIALOG,
                                                 "Éxito",
