@@ -17,6 +17,7 @@ public class Deudor {
     private final SimpleStringProperty mes;
     private final SimpleStringProperty anno;
     private final SimpleStringProperty valorMensual;
+    private int valorMensualInt;
     
      public Deudor() {
         this.rutEmpresa = new SimpleStringProperty();
@@ -103,5 +104,25 @@ public class Deudor {
 
     public void setValorMensual(String valorMensual) {
         this.valorMensual.set(valorMensual != null ? valorMensual.trim() : "");
+    }
+
+    public int getValorMensualInt() {
+        return valorMensualInt;
+    }
+
+    public void setValorMensualInt(int valorMensualInt) {
+        this.valorMensualInt = valorMensualInt;
+    }
+
+    public int getMesInt() {
+        return Integer.parseInt(mes.get());
+    }
+
+    public int getAnnoInt() {
+        return Integer.parseInt(anno.get());
+    }
+
+    public void setMontoInt(int montoInt){
+        this.montoAbono.set(String.valueOf(montoInt));
     }
 }

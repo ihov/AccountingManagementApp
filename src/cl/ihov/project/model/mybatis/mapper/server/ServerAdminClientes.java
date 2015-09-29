@@ -358,7 +358,7 @@ public class ServerAdminClientes extends MyBatisFactory implements AdminClientes
     }
     
     @Override
-    public List<Deudor>selectDeudores(Deudor deudor) throws DataException{
+    public List<Deudor> selectDeudores(Deudor deudor) throws DataException{
         List<Deudor>lista;
         SqlSessionFactory sqlSessionFactory = MyBatisFactory.getConnexionSqlSessionFactory();
         SqlSession session = sqlSessionFactory.openSession();

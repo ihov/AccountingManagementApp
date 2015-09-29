@@ -18,7 +18,7 @@
     <resultMap id="deudoresResultMap" type="cl.ihov.project.common.vo.Deudor">
         <result column="rutempresa" property="rutEmpresa" jdbcType="VARCHAR" />
         <result column="monto" property="montoInt" jdbcType="INTEGER" />
-        <result column="valormensual" property="valorMensual" jdbcType="INTEGER" />
+        <result column="valormensual" property="valorMensualInt" jdbcType="INTEGER" />
         <result column="girocomercial" property="giroComercial" jdbcType="VARCHAR" />
         <result column="razonsocial" property="razonSocial" jdbcType="VARCHAR" />
     </resultMap>
@@ -133,9 +133,13 @@
         SELECT
         <include refid="expressionDeudores"/>
         FROM
-        abono a, empresa b 
+            abono a, empresa b 
         WHERE
-        mes =#{mes,jdbcType=INTEGER} and anno=#{anno,jdbcType=INTEGER} and a.rutempresa=b.rutempresa order by a.rutempresa
+            a.mes = #{mesInt,jdbcType=INTEGER} and 
+            a.anno = #{annoInt,jdbcType=INTEGER} and 
+            a.rutempresa = b.rutempresa 
+        order by 
+            a.rutempresa
     </select>
     
     <select id="selectAbonoCliente" resultMap="abonoResultMap" parameterType="cl.ihov.project.common.vo.Abono">   

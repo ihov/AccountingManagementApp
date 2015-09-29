@@ -65,14 +65,51 @@ public class AbonoManagerImpl implements AbonoManager {
     public List<Deudor> findDeudores(Deudor deudor) throws DataException {
         List<Deudor> lista = adminClientesMapper.selectDeudores(deudor);
         List<Deudor> listaDeudores = new ArrayList<>();
-        List<String> listaRutEmpresa = new ArrayList<>();
-        
-        
-        if(!lista.isEmpty()){
-            for (Deudor abono : lista) {
-               
+
+        if (lista != null && !lista.isEmpty()) {
+            Deudor di = null, dj = null, d;
+            long suma = 0;
+            for (int i = 0; i < lista.size(); i++) {
+                di = (Deudor) lista.get(i);
+                suma += Long.valueOf(di.getMontoAbono());
+                for (int j = i + 1; j < lista.size(); j++) {
+                    dj = (Deudor) lista.get(j);
+                    if (di.getRutEmpresa().equals(dj.getRutEmpresa())) {
+                        suma += Long.valueOf(dj.getMontoAbono());
+                        if ((j + 1) == lista.size()) {
+                            long montoDebe = di.getValorMensualInt() - suma;
+                            if (montoDebe > 0) {
+                                d = new Deudor();
+                                d.setGiroComercial(di.getGiroComercial());
+                                d.setRazonSocial(di.getRazonSocial());
+                                d.setMontoDebe(String.valueOf(montoDebe));
+                                d.setMontoAbono(String.valueOf(suma));
+                                d.setRutEmpresa(di.getRutEmpresa());
+                                d.setValorMensual(String.valueOf(di.getValorMensualInt()));
+                                listaDeudores.add(d);
+                            }
+                            suma = 0;
+                            i = j;
+                            break;
+                        }
+                    } else {
+                        long montoDebe = di.getValorMensualInt() - suma;
+                        if (montoDebe > 0) {
+                            d = new Deudor();
+                            d.setGiroComercial(di.getGiroComercial());
+                            d.setRazonSocial(di.getRazonSocial());
+                            d.setMontoDebe(String.valueOf(montoDebe));
+                            d.setMontoAbono(String.valueOf(suma));
+                            d.setRutEmpresa(di.getRutEmpresa());
+                            d.setValorMensual(String.valueOf(di.getValorMensualInt()));
+                            listaDeudores.add(d);
+                        }
+                        suma = 0;
+                        i = j - 1;
+                        break;
+                    }
+                }
             }
-             
         }
 
         return listaDeudores;

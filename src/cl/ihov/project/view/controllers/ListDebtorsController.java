@@ -34,7 +34,7 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
     private EmpresaManager empresaManeger;
     private AbonoManager abonoManager;
     private Deudor deudor;
-    private ObservableList<Deudor>listaDeudores;
+    private ObservableList<Deudor> listaDeudores;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -42,7 +42,7 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
         abonoManager = new AbonoManagerImpl();
         mesAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboMesAbono"));
         annioAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
-        deudor=new Deudor();
+        deudor = new Deudor();
         cargaPeriodos();
         cargaMeses();
 
@@ -114,11 +114,74 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
             deudor.setMes(String.valueOf(mesAbono.getSelectionModel().getSelectedIndex()));
             if (annioAbono.getValue() != null && !annioAbono.getValue().equals("0")) {
                 deudor.setAnno(annioAbono.getSelectionModel().getSelectedItem());
-                
+
                 try {
-                    List<Deudor>lista=abonoManager.findDeudores(deudor);
-                    
-                }catch (DataException ex) {
+                    List<Deudor> lista = abonoManager.findDeudores(deudor);
+                    if (lista != null) {
+                        listaDeudores = FXCollections.observableArrayList();
+                        lista.stream().forEach((c) -> {
+                            Deudor e = new Deudor();
+                            e.setRazonSocial(c.getRazonSocial());
+                            e.setRutEmpresa(c.getRutEmpresa());
+                            e.setGiroComercial(c.getGiroComercial());
+                            e.setValorMensual(c.getValorMensual());
+                            e.setMontoAbono(c.getMontoAbono());
+                            e.setMontoDebe(c.getMontoDebe());
+                            listaDeudores.add(e);
+                        });
+                        
+                        TableColumn rutEmprersaCol = new TableColumn("Rut Empresa");
+                        rutEmprersaCol.setMinWidth(100);
+                        rutEmprersaCol.setCellValueFactory(
+                                new PropertyValueFactory<>("rutEmpresa")
+                        );
+
+                        TableColumn razonSocialCol = new TableColumn("Razón Social");
+                        razonSocialCol.setMinWidth(100);
+                        razonSocialCol.setCellValueFactory(
+                                new PropertyValueFactory<>("razonSocial")
+                        );
+
+                        TableColumn giroComercialCol = new TableColumn("Giro Comercial");
+                        giroComercialCol.setMinWidth(200);
+                        giroComercialCol.setCellValueFactory(
+                                new PropertyValueFactory<>("giroComercial")
+                        );
+
+                        TableColumn valorMensualCol = new TableColumn("Valor Mensual");
+                        valorMensualCol.setMinWidth(100);
+                        valorMensualCol.setCellValueFactory(
+                                new PropertyValueFactory<>("valorMensual")
+                        );
+                        
+                        TableColumn montoAbonoCol = new TableColumn("Monto abono");
+                        montoAbonoCol.setMinWidth(100);
+                        montoAbonoCol.setCellValueFactory(
+                                new PropertyValueFactory<>("montoAbono")
+                        );
+                        
+                        TableColumn montoDebeCol = new TableColumn("Monto debe");
+                        montoDebeCol.setMinWidth(100);
+                        montoDebeCol.setCellValueFactory(
+                                new PropertyValueFactory<>("montoDebe")
+                        );
+                        dataEmpresa.setItems(listaDeudores);
+                        dataEmpresa.getColumns().addAll(
+                                rutEmprersaCol,
+                                razonSocialCol,
+                                giroComercialCol,
+                                montoAbonoCol,
+                                montoDebeCol,
+                                valorMensualCol
+                        );
+
+                    } else {
+                        DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+                                "Error",
+                                "Ocurrió un problema",
+                                "Problema . \nIntente nuevamente.");
+                    }
+                } catch (DataException ex) {
                     DialogUtils.showExceptionDialog(
                             "Error",
                             "Se ha producido un error inesperado",
@@ -140,75 +203,4 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
         }
     }
 
-//    private void loadDataEmpresas() {
-//        try {
-//            List<Empresa> lista = empresaManeger.findAllEmpresa();
-//            if (lista != null) {
-//
-//                empresas = FXCollections.observableArrayList();
-//
-//                lista.stream().forEach((c) -> {
-//                    Empresa e = new Empresa();
-//                    e.setRutCliente(c.getRutCliente());
-//                    e.setRazonSocial(c.getRazonSocial());
-//                    e.setRutEmpresa(c.getRutEmpresa());
-//                    e.setGiroComercial(c.getGiroComercial());
-//                    e.setValorMensual(c.getValorMensual());
-//                    empresas.add(e);
-//                });
-//
-//                TableColumn rutClienteCol = new TableColumn("Rut Cliente");
-//                rutClienteCol.setMinWidth(100);
-//                rutClienteCol.setCellValueFactory(
-//                        new PropertyValueFactory<>("rutCliente")
-//                );
-//
-//                TableColumn rutEmprersaCol = new TableColumn("Rut Empresa");
-//                rutEmprersaCol.setMinWidth(100);
-//                rutEmprersaCol.setCellValueFactory(
-//                        new PropertyValueFactory<>("rutEmpresa")
-//                );
-//
-//                TableColumn razonSocialCol = new TableColumn("Razón Social");
-//                razonSocialCol.setMinWidth(100);
-//                razonSocialCol.setCellValueFactory(
-//                        new PropertyValueFactory<>("razonSocial")
-//                );
-//
-//                TableColumn giroComercialCol = new TableColumn("Giro Comercial");
-//                giroComercialCol.setMinWidth(200);
-//                giroComercialCol.setCellValueFactory(
-//                        new PropertyValueFactory<>("giroComercial")
-//                );
-//
-//                TableColumn valorMensualCol = new TableColumn("Valor Mensual");
-//                valorMensualCol.setMinWidth(100);
-//                valorMensualCol.setCellValueFactory(
-//                        new PropertyValueFactory<>("valorMensual")
-//                );
-//
-//                dataEmpresas.setItems(empresas);
-//                dataEmpresas.getColumns().addAll(
-//                        rutClienteCol,
-//                        rutEmprersaCol,
-//                        razonSocialCol,
-//                        giroComercialCol,
-//                        valorMensualCol
-//                );
-//
-//                dataEmpresas.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-//            } else {
-//                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
-//                        "Error",
-//                        "Ocurrió un problema",
-//                        "Problema . \nIntente nuevamente.");
-//            }
-//        } catch (DataException ex) {
-//            DialogUtils.showExceptionDialog(
-//                    "Error",
-//                    "Se ha producido un error inesperado",
-//                    "El detalle de la excepción se presenta \na continuación",
-//                    new DataException(ex));
-//        }
-//    }
 }
