@@ -6,6 +6,7 @@ import cl.ihov.project.common.vo.Banco;
 import cl.ihov.project.common.vo.Cliente;
 import cl.ihov.project.common.vo.Contabilidad;
 import cl.ihov.project.common.vo.Cuenta;
+import cl.ihov.project.common.vo.Deudor;
 import cl.ihov.project.common.vo.Empresa;
 import cl.ihov.project.common.vo.Fechas;
 import cl.ihov.project.common.vo.Mes;
@@ -354,5 +355,22 @@ public class ServerAdminClientes extends MyBatisFactory implements AdminClientes
             session.close();
         }
         return listaAbonos;
+    }
+    
+    @Override
+    public List<Deudor>selectDeudores(Deudor deudor) throws DataException{
+        List<Deudor>lista;
+        SqlSessionFactory sqlSessionFactory = MyBatisFactory.getConnexionSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            AdminClientesMapper mapper = session.getMapper(AdminClientesMapper.class);
+            lista = mapper.selectDeudores(deudor);
+        } catch (Exception ex) {
+            throw new DataException(ex.getMessage(), ex.getCause());
+        } finally {
+            session.clearCache();
+            session.close();
+        }
+        return lista;
     }
 }

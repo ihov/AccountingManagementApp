@@ -6,6 +6,7 @@ import cl.ihov.project.common.vo.Banco;
 import cl.ihov.project.common.vo.Cliente;
 import cl.ihov.project.common.vo.Contabilidad;
 import cl.ihov.project.common.vo.Cuenta;
+import cl.ihov.project.common.vo.Deudor;
 import cl.ihov.project.common.vo.Empresa;
 import cl.ihov.project.common.vo.Fechas;
 import cl.ihov.project.common.vo.Mes;
@@ -54,5 +55,7 @@ public interface AdminClientesMapper {
     public List<Mes> selectMes() throws DataException;
 
     public List<Abono> selectAbonosEntreFechas(Fechas fechas) throws DataException;
+
+    public List<Deudor> selectDeudores(Deudor deudor) throws DataException;
 
 }

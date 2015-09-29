@@ -2,10 +2,13 @@ package cl.ihov.project.managers.abono;
 
 import cl.ihov.project.common.exception.DataException;
 import cl.ihov.project.common.vo.Abono;
+import cl.ihov.project.common.vo.Deudor;
 import cl.ihov.project.common.vo.Fechas;
 import cl.ihov.project.model.factory.SessionFactory;
 import cl.ihov.project.model.mybatis.mapper.interfaces.AdminClientesMapper;
+import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.ObservableList;
 
 public class AbonoManagerImpl implements AbonoManager {
 
@@ -45,9 +48,10 @@ public class AbonoManagerImpl implements AbonoManager {
         abono.setIdAbonoInt(Integer.valueOf(abono.getIdAbono()));
         adminClientesMapper.deleteAbono(abono);
     }
+
     @Override
     public List<Abono> findAbonos(Fechas fechas) throws DataException {
-       List<Abono> listAbono = adminClientesMapper.selectAbonosEntreFechas(fechas);
+        List<Abono> listAbono = adminClientesMapper.selectAbonosEntreFechas(fechas);
         if (!listAbono.isEmpty()) {
             for (Abono ab : listAbono) {
                 ab.setIdAbono(String.valueOf(ab.getIdAbonoInt()));
@@ -55,5 +59,22 @@ public class AbonoManagerImpl implements AbonoManager {
             }
         }
         return listAbono;
+    }
+
+    @Override
+    public List<Deudor> findDeudores(Deudor deudor) throws DataException {
+        List<Deudor> lista = adminClientesMapper.selectDeudores(deudor);
+        List<Deudor> listaDeudores = new ArrayList<>();
+        List<String> listaRutEmpresa = new ArrayList<>();
+        
+        
+        if(!lista.isEmpty()){
+            for (Deudor abono : lista) {
+               
+            }
+             
+        }
+
+        return listaDeudores;
     }
 }

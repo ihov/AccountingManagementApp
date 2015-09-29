@@ -2,6 +2,7 @@ package cl.ihov.project.managers.abono;
 
 import cl.ihov.project.common.exception.DataException;
 import cl.ihov.project.common.vo.Abono;
+import cl.ihov.project.common.vo.Deudor;
 import cl.ihov.project.common.vo.Fechas;
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface AbonoManager {
     public abstract void deleteAbono(Abono abono) throws DataException;
     
     public abstract List<Abono> findAbonos(Fechas fecha) throws DataException;
+
+    public abstract List<Deudor> findDeudores(Deudor deudor) throws DataException;
 }
