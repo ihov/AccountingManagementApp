@@ -15,6 +15,14 @@
         <result column="anno" property="anno" jdbcType="VARCHAR" />
     </resultMap>
     
+    <resultMap id="deudoresResultMap" type="cl.ihov.project.common.vo.Deudor">
+        <result column="rutempresa" property="rutEmpresa" jdbcType="VARCHAR" />
+        <result column="monto" property="montoInt" jdbcType="INTEGER" />
+        <result column="valormensual" property="valorMensual" jdbcType="INTEGER" />
+        <result column="girocomercial" property="giroComercial" jdbcType="VARCHAR" />
+        <result column="razonsocial" property="razonSocial" jdbcType="VARCHAR" />
+    </resultMap>
+    
     <resultMap id="clienteResultMap" type="cl.ihov.project.common.vo.Cliente" >
         <result column="rutcliente" property="rutCliente" jdbcType="VARCHAR" />
         <result column="nombres" property="nombres" jdbcType="VARCHAR" />
@@ -93,6 +101,14 @@
         anno
     </sql>
     
+    <sql id='expressionDeudores'>
+        a.rutempresa,
+        a.monto,
+        a.valormensual,
+        b.girocomercial,
+        b.razonsocial
+    </sql>
+    
     <!--SELECT-->
     
     <select id="selectAbonosEmpresa" resultMap="abonoResultMap" parameterType="cl.ihov.project.common.vo.Abono">   
@@ -111,6 +127,15 @@
         abono
         WHERE
         fecha_mov between  #{fechaInicio,jdbcType=DATE} and #{fechaTermino ,jdbcType=DATE} 
+    </select>
+    
+    <select id="selectDeudores" resultMap="deudoresResultMap" parameterType="cl.ihov.project.common.vo.Deudor">
+        SELECT
+        <include refid="expressionDeudores"/>
+        FROM
+        abono a, empresa b 
+        WHERE
+        mes =#{mes,jdbcType=INTEGER} and anno=#{anno,jdbcType=INTEGER} and a.rutempresa=b.rutempresa order by a.rutempresa
     </select>
     
     <select id="selectAbonoCliente" resultMap="abonoResultMap" parameterType="cl.ihov.project.common.vo.Abono">   
@@ -256,7 +281,7 @@
     <insert id="insertAbono" statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Abono">
         INSERT INTO 
         abono
-        (rutempresa, monto, nrecibo, observacion, mes, anno, fecha, fecha_mov)
+        (rutempresa, monto, nrecibo, observacion, mes, anno, fecha, fecha_mov, valormensual)
         VALUES (
         #{rutEmpresa,jdbcType=VARCHAR},
         #{montoInt,jdbcType=INTEGER},            
@@ -265,7 +290,8 @@
         #{mesInt,jdbcType=INTEGER},
         #{annoInt,jdbcType=INTEGER},
         CURRENT_TIMESTAMP,
-        CURRENT_TIMESTAMP)
+        CURRENT_TIMESTAMP,
+        #{valorMensual,jdbcType=INTEGER})
     </insert>
     
     <!--UPDATE-->

@@ -17,6 +17,7 @@ public class Abono {
     private Date fechaDate;
     private int montoInt;
     private int idAbonoInt;
+    private int valorMensual;
 
     public Abono() {
         this.rutCliente = new SimpleStringProperty();
@@ -144,5 +145,13 @@ public class Abono {
 
     public void setMontoInt(int montoInt) {
         this.montoInt = montoInt;
+    }
+
+    public int getValorMensual() {
+        return valorMensual;
+    }
+
+    public void setValorMensual(int valorMensual) {
+        this.valorMensual = valorMensual;
     }
 }

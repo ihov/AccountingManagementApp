@@ -87,6 +87,7 @@ public class PaymentController extends PaymentViewComponent implements Initializ
             Empresa e = dataEmpresa.getSelectionModel().getSelectedItem();
             abonoEmpresa.setRutEmpresa(e.getRutEmpresa().trim());
             abonoEmpresa.setRutCliente(e.getRutCliente().trim());
+            abonoEmpresa.setValorMensual(Integer.valueOf(e.getValorMensual().trim()));
             if (monto.getText() != null && !monto.getText().isEmpty()) {
                 abonoEmpresa.setMonto(monto.getText().trim());
                 if (observacion.getText() != null && !observacion.getText().isEmpty()) {

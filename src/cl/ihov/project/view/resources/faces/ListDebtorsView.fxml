@@ -22,6 +22,7 @@
       <Button fx:id="deudoresAll" layoutX="21.0" layoutY="574.0" mnemonicParsing="false" onAction="#handleReportAllDeudores" text="Generar PDF" />
       <ComboBox fx:id="mesAbono" layoutX="201.0" layoutY="97.0" prefHeight="26.0" prefWidth="191.0" />
       <ComboBox fx:id="annioAbono" layoutX="452.0" layoutY="97.0" prefHeight="26.0" prefWidth="184.0" />
+      <Button fx:id="buscar" layoutX="684.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleBuscaDeudores" text="Buscar" />
    </children>
   <padding>
     <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

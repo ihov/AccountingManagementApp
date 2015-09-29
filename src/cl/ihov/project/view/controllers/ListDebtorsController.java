@@ -4,8 +4,11 @@ import cl.ihov.project.common.exception.DataException;
 import cl.ihov.project.common.initial.MainProject;
 import cl.ihov.project.common.utils.BaseJasperReports;
 import cl.ihov.project.common.utils.BaseResources;
+import cl.ihov.project.common.vo.Deudor;
 import cl.ihov.project.common.vo.Empresa;
 import cl.ihov.project.common.vo.Mes;
+import cl.ihov.project.managers.abono.AbonoManager;
+import cl.ihov.project.managers.abono.AbonoManagerImpl;
 import cl.ihov.project.managers.empresa.EmpresaManager;
 import cl.ihov.project.managers.empresa.EmpresaManagerImpl;
 import cl.ihov.project.view.components.ListDebtorsViewComponent;
@@ -16,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,12 +32,17 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
 
     private MainProject mainProject;
     private EmpresaManager empresaManeger;
+    private AbonoManager abonoManager;
+    private Deudor deudor;
+    private ObservableList<Deudor>listaDeudores;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         empresaManeger = new EmpresaManagerImpl();
+        abonoManager = new AbonoManagerImpl();
         mesAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboMesAbono"));
         annioAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
+        deudor=new Deudor();
         cargaPeriodos();
         cargaMeses();
 
@@ -96,6 +105,38 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
             BaseJasperReports.createReport("listadoAllEmpresas", hm);
         } catch (JRException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleBuscaDeudores(ActionEvent event) {
+        if (mesAbono.getValue() != null && !mesAbono.getValue().equals("0")) {
+            deudor.setMes(String.valueOf(mesAbono.getSelectionModel().getSelectedIndex()));
+            if (annioAbono.getValue() != null && !annioAbono.getValue().equals("0")) {
+                deudor.setAnno(annioAbono.getSelectionModel().getSelectedItem());
+                
+                try {
+                    List<Deudor>lista=abonoManager.findDeudores(deudor);
+                    
+                }catch (DataException ex) {
+                    DialogUtils.showExceptionDialog(
+                            "Error",
+                            "Se ha producido un error inesperado",
+                            "El detalle de la excepción se presenta \na continuación",
+                            new DataException(ex));
+                }
+            } else {
+                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+                        "Error",
+                        "Año de abono",
+                        "El registro año de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+            }
+        } else {
+            DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+                    "Error",
+                    "Mes de abono",
+                    "El registro mes de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+
         }
     }
 
