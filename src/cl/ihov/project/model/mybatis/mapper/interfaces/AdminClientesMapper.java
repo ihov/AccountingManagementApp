@@ -57,5 +57,7 @@ public interface AdminClientesMapper {
     public List<Abono> selectAbonosEntreFechas(Fechas fechas) throws DataException;
 
     public List<Deudor> selectDeudores(Deudor deudor) throws DataException;
+    
+    public void insertDeudor(Deudor deudor) throws DataException;
 
 }
