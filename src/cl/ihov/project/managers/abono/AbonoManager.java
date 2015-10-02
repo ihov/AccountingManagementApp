@@ -19,4 +19,6 @@ public interface AbonoManager {
     public abstract List<Abono> findAbonos(Fechas fecha) throws DataException;
 
     public abstract List<Deudor> findDeudores(Deudor deudor) throws DataException;
+    
+    public void insertDeudores(List<Deudor> listaDeudores) throws DataException;
 }
