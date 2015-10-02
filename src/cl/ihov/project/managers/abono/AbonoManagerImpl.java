@@ -8,7 +8,8 @@ import cl.ihov.project.model.factory.SessionFactory;
 import cl.ihov.project.model.mybatis.mapper.interfaces.AdminClientesMapper;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.ObservableList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AbonoManagerImpl implements AbonoManager {
 
@@ -115,5 +116,20 @@ public class AbonoManagerImpl implements AbonoManager {
         }
 
         return listaDeudores;
+    }
+
+    @Override
+    public void insertDeudores(List<Deudor> listaDeudores) {
+        try {
+            for (Deudor deudor : listaDeudores) {
+                deudor.setTotalAbono(Integer.valueOf(deudor.getMontoAbono()));
+                deudor.setMontoDebeInt(Integer.valueOf(deudor.getMontoDebe()));
+                deudor.setIntMes(Integer.valueOf(deudor.getMes()));
+                deudor.setIntAnno(Integer.valueOf(deudor.getAnno()));
+                adminClientesMapper.insertDeudor(deudor);
+            }
+        } catch (DataException ex) {
+            Logger.getLogger(AbonoManagerImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
