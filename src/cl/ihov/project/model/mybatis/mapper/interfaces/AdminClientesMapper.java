@@ -60,4 +60,6 @@ public interface AdminClientesMapper {
     
     public void insertDeudor(Deudor deudor) throws DataException;
 
+    public void deleteDeudorReporte()throws DataException;
+
 }

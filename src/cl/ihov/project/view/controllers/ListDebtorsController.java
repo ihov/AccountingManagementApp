@@ -15,6 +15,7 @@ import cl.ihov.project.managers.cliente.ClienteManagerImpl;
 import cl.ihov.project.managers.empresa.EmpresaManager;
 import cl.ihov.project.managers.empresa.EmpresaManagerImpl;
 import cl.ihov.project.view.components.ListDebtorsViewComponent;
+import cl.ihov.project.view.utils.DateUtils;
 import cl.ihov.project.view.utils.DialogUtils;
 import cl.ihov.project.view.utils.SendMailUtils;
 import java.net.URL;
@@ -23,6 +24,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -112,9 +115,18 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
 
     @FXML
     private void handleReportAllDeudores(ActionEvent event) {
+        try {
+            abonoManager.insertDeudores(listaDeudores, annioAbono.getSelectionModel().getSelectedItem(), DateUtils.stringMonth2intMonth(mesAbono.getSelectionModel().getSelectedItem()));
+        } catch (DataException ex) {
+            DialogUtils.showExceptionDialog(
+                    "Error",
+                    "Se ha producido un error inesperado",
+                    "El detalle de la excepción se presenta \na continuación",
+                    new DataException(ex));
+        }
         HashMap hm = null;
         try {
-            BaseJasperReports.createReport("listadoAllEmpresas", hm);
+            BaseJasperReports.createReport("listadoDeudores", hm);
         } catch (JRException ex) {
             ex.printStackTrace();
         }
@@ -265,7 +277,10 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
             final String from = "ihovlimitada@gmail.com";
             final String password = "12345678ihov";
             final String subject = "MENSUALIDAD PENDIENTE";
-            final String body = "Estimado Cliente<strong><br/><br/><em>Le recuerdo que usted tiene una cuota impaga a la fecha de hoy, favor contactarme para saldar la deuda.<br/></em></strong><strong><br/><em>Saludos cordiales</em></strong>";
+            final String body = "<strong>Estimado Cliente</strong><br/><br/>"
+                    + "<em>Le recuerdo que usted tiene una cuota impaga a la fecha de hoy, favor contactarme para saldar la deuda.<br/></em><br/>"
+                    + "<em>Saludos cordiales</em><br/>"
+                    + "<strong><em>Victoria Mora</em></strong>";
             final HashMap<Object, Object> proBar = new HashMap<>();
 
             Task<Void> task = new Task<Void>() {
@@ -297,7 +312,6 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
             th.start();
             dataEmpresa.getSelectionModel().clearSelection();
         }
-
     }
 
 }

@@ -387,4 +387,19 @@ public class ServerAdminClientes extends MyBatisFactory implements AdminClientes
             session.close();
         }
     }
+    
+    @Override
+    public void deleteDeudorReporte() throws DataException {
+        SqlSessionFactory sqlSessionFactory = MyBatisFactory.getConnexionSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            AdminClientesMapper mapper = session.getMapper(AdminClientesMapper.class);
+            mapper.deleteDeudorReporte();
+        } catch (Exception ex) {
+            throw new DataException(ex.getMessage(), ex.getCause());
+        } finally {
+            session.clearCache();
+            session.close();
+        }
+    }
 }

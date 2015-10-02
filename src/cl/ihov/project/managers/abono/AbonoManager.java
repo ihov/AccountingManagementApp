@@ -20,5 +20,5 @@ public interface AbonoManager {
 
     public abstract List<Deudor> findDeudores(Deudor deudor) throws DataException;
     
-    public void insertDeudores(List<Deudor> listaDeudores) throws DataException;
+    public void insertDeudores(List<Deudor> listaDeudores,String anio, String mes) throws DataException;
 }

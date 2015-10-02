@@ -310,7 +310,7 @@
         #{totalAbono,jdbcType=INTEGER},
         #{valorMensualInt,jdbcType=INTEGER},
         #{montoDebeInt,jdbcType=INTEGER},
-        #{intMes,jdbcType=INTEGER}),
+        #{intMes,jdbcType=INTEGER},
         #{intAnno,jdbcType=INTEGER})
     </insert>
     
@@ -371,7 +371,9 @@
     </update>    
     
     <!--DELETE-->
-    
+    <delete id="deleteDeudorReporte" statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Deudor">
+        TRUNCATE deudores
+    </delete>
     <delete id="deleteCliente"  statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Cliente">
         DELETE FROM
         cliente
