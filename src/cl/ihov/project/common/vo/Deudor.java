@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cl.ihov.project.common.vo;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -18,6 +13,10 @@ public class Deudor {
     private final SimpleStringProperty anno;
     private final SimpleStringProperty valorMensual;
     private int valorMensualInt;
+    private int totalAbono;
+    private int montoDebeInt;
+    private int intMes;
+    private int intAnno;
     private String rutCliente;
     
      public Deudor() {
@@ -133,5 +132,55 @@ public class Deudor {
 
     public void setRutCliente(String rutCliente) {
         this.rutCliente = rutCliente;
+    }
+
+    public int getTotalAbono() {
+        return totalAbono;
+    }
+
+    public void setTotalAbono(int totalAbono) {
+        this.totalAbono = totalAbono;
+    }
+
+    /**
+     * @return the montoDebeInt
+     */
+    public int getMontoDebeInt() {
+        return montoDebeInt;
+    }
+
+    /**
+     * @param montoDebeInt the montoDebeInt to set
+     */
+    public void setMontoDebeInt(int montoDebeInt) {
+        this.montoDebeInt = montoDebeInt;
+    }
+
+    /**
+     * @return the intMes
+     */
+    public int getIntMes() {
+        return intMes;
+    }
+
+    /**
+     * @param intMes the intMes to set
+     */
+    public void setIntMes(int intMes) {
+        this.intMes = intMes;
+    }
+
+    /**
+     * @return the intAnno
+     */
+    public int getIntAnno() {
+        return intAnno;
+    }
+
+    /**
+     * @param intAnno the intAnno to set
+     */
+    public void setIntAnno(int intAnno) {
+        this.intAnno = intAnno;
     }
 }
