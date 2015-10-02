@@ -300,6 +300,20 @@
         #{valorMensual,jdbcType=INTEGER})
     </insert>
     
+    <insert id="insertDeudor" statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Deudor">
+        INSERT INTO 
+        deudores        
+        VALUES (
+        #{rutEmpresa,jdbcType=VARCHAR},
+        #{giroComercial,jdbcType=VARCHAR},
+        #{razonSocial,jdbcType=VARCHAR},
+        #{totalAbono,jdbcType=INTEGER},
+        #{valorMensualInt,jdbcType=INTEGER},
+        #{montoDebeInt,jdbcType=INTEGER},
+        #{intMes,jdbcType=INTEGER}),
+        #{intAnno,jdbcType=INTEGER})
+    </insert>
+    
     <!--UPDATE-->
     
     <update id="updateCliente" statementType="PREPARED" parameterType="cl.ihov.project.common.vo.Cliente">
