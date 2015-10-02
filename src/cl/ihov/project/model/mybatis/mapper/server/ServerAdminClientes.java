@@ -13,7 +13,6 @@ import cl.ihov.project.common.vo.Mes;
 import cl.ihov.project.model.factory.MyBatisFactory;
 import cl.ihov.project.model.mybatis.mapper.interfaces.AdminClientesMapper;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -372,5 +371,20 @@ public class ServerAdminClientes extends MyBatisFactory implements AdminClientes
             session.close();
         }
         return lista;
+    }
+    
+    @Override
+    public void insertDeudor(Deudor deudor) throws DataException{
+        SqlSessionFactory sqlSessionFactory = MyBatisFactory.getConnexionSqlSessionFactory();
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            AdminClientesMapper mapper = session.getMapper(AdminClientesMapper.class);
+            mapper.insertDeudor(deudor);
+        } catch (Exception ex) {
+            throw new DataException(ex.getMessage(), ex.getCause());
+        } finally {
+            session.clearCache();
+            session.close();
+        }
     }
 }
