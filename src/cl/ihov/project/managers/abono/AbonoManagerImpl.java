@@ -113,13 +113,27 @@ public class AbonoManagerImpl implements AbonoManager {
                     }
                 }
             }
+            if (lista.size() == 1 && listaDeudores.isEmpty()) {
+                long montoDebe = lista.get(0).getValorMensualInt() - suma;
+                if (montoDebe > 0) {
+                    d = new Deudor();
+                    d.setGiroComercial(di.getGiroComercial());
+                    d.setRazonSocial(di.getRazonSocial());
+                    d.setMontoDebe(String.valueOf(montoDebe));
+                    d.setMontoAbono(String.valueOf(suma));
+                    d.setRutEmpresa(di.getRutEmpresa());
+                    d.setValorMensual(String.valueOf(di.getValorMensualInt()));
+                    d.setRutCliente(di.getRutCliente());
+                    listaDeudores.add(d);
+                }
+            }
         }
 
         return listaDeudores;
     }
 
     @Override
-    public void insertDeudores(List<Deudor> listaDeudores,String anioAbono,String mesAbono) {
+    public void insertDeudores(List<Deudor> listaDeudores, String anioAbono, String mesAbono) {
         try {
             adminClientesMapper.deleteDeudorReporte();
             for (Deudor deudor : listaDeudores) {

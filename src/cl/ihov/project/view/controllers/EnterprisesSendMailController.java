@@ -162,8 +162,8 @@ public class EnterprisesSendMailController extends EnterprisesSendMailViewCompon
 
             final String from = "correo@gmail.com";
             final String password = "password";
-            final String subject = "DEDUDORES CULIAOS";
-            final String body = "Estimados CTM<strong><em>Alguna wea</em></strong><strong><em>Alguna otra wea</em></strong>";
+            final String subject = "DEDUDORES ";
+            final String body = "Estimados <strong><em>Alguno</em></strong><strong><em>Alguno</em></strong>";
             final HashMap<Object, Object> proBar = new HashMap<>();
 
             Task<Void> task = new Task<Void>() {

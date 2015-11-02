@@ -274,13 +274,13 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
                 }
             });
 
-            final String from = "ihovlimitada@gmail.com";
-            final String password = "12345678ihov";
+            final String from = "xxxxx@gmail.com";//"ihovlimitada@gmail.com";
+            final String password = "xxxxx";//"12345678ihov";
             final String subject = "MENSUALIDAD PENDIENTE";
             final String body = "<strong>Estimado Cliente</strong><br/><br/>"
                     + "<em>Le recuerdo que usted tiene una cuota impaga a la fecha de hoy, favor contactarme para saldar la deuda.<br/></em><br/>"
-                    + "<em>Saludos cordiales</em><br/>"
-                    + "<strong><em>Victoria Mora</em></strong>";
+                    + "<em>Saludos cordiales, Victoria Mora.</em><br/>";
+                    //+ "<strong><em>Victoria Mora</em></strong>";
             final HashMap<Object, Object> proBar = new HashMap<>();
 
             Task<Void> task = new Task<Void>() {

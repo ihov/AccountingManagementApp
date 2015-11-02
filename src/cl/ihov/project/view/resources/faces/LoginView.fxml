@@ -13,8 +13,8 @@
 <AnchorPane id="AnchorPane" fx:id="UserAvatar" minHeight="-1.0" minWidth="-1.0" prefHeight="250.0" prefWidth="250.0" rotate="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.ihov.project.view.controllers.LoginController">
   <children>
     <Button fx:id="login" layoutX="85.0" layoutY="167.0" onAction="#handleLogin" prefHeight="25.0" prefWidth="77.0" text="Ingresar" />
-    <TextField fx:id="username" layoutX="40.0" layoutY="99.0" prefHeight="25.0" prefWidth="170.0" promptText="Nombre de usuario" text="svaldivia"  />
-    <PasswordField fx:id="password" layoutX="40.0" layoutY="132.0" prefHeight="25.0" prefWidth="170.0" promptText="Contraseña" text="123456"  />
+    <TextField fx:id="username" layoutX="40.0" layoutY="99.0" prefHeight="25.0" prefWidth="170.0" promptText="Nombre de usuario" text=""  />
+    <PasswordField fx:id="password" layoutX="40.0" layoutY="132.0" prefHeight="25.0" prefWidth="170.0" promptText="Contraseña" text=""  />
     <ImageView disable="false" fitHeight="77.0" fitWidth="78.0" layoutX="85.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" smooth="true">
       <image>
         <Image url="@../images/no-photo.jpg" />

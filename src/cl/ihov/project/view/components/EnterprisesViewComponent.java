@@ -6,10 +6,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 
-/**
- *
- * @author SVALDIVIA
- */
 public class EnterprisesViewComponent {
     
     @FXML

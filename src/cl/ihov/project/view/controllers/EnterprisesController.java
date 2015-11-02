@@ -33,10 +33,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-/**
- *
- * @author SVALDIVIA
- */
 public class EnterprisesController extends EnterprisesViewComponent implements Initializable {
 
     private MainProject mainProject;

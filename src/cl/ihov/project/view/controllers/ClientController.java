@@ -86,7 +86,7 @@ public class ClientController extends ClientViewComponent implements Initializab
     private void handleGoHome(ActionEvent event) {
         mainProject.showMainMenu();
     }
-    
+
     @FXML
     private void handleCliente(ActionEvent event) {
         mainProject.showClientes();
@@ -104,8 +104,12 @@ public class ClientController extends ClientViewComponent implements Initializab
                         cliente.setRutCliente(rut.getText().trim());
                         if (email.getText() != null && !email.getText().isEmpty()) {
                             cliente.setEmail(email.getText().trim());
-                            if (telefono.getText() != null && !telefono.getText().isEmpty()) {
-                                cliente.setTelFijo(telefono.getText().trim());
+                            if (telefono.getText() != null) {
+                                if (telefono.getText().isEmpty()) {
+                                    cliente.setTelFijo("0");
+                                } else {
+                                    cliente.setTelFijo(telefono.getText().trim());
+                                }
                                 if (celular.getText() != null && !celular.getText().isEmpty()) {
                                     cliente.setCelular(celular.getText().trim());
                                     try {

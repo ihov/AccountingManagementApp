@@ -5,10 +5,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 
-/**
- *
- * @author SVALDIVIA
- */
 public class EnterprisesEditViewComponent {
 
 

@@ -26,10 +26,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-/**
- *
- * @author SVALDIVIA
- */
 public class EnterprisesEditController extends EnterprisesEditViewComponent implements Initializable {
 
     private MainProject mainProject;
