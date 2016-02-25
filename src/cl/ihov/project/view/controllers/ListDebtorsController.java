@@ -274,8 +274,8 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
                 }
             });
 
-            final String from = "xxxxx@gmail.com";//"ihovlimitada@gmail.com";
-            final String password = "xxxxx";//"12345678ihov";
+            final String from = "vvmoral@gmail.com";//"ihovlimitada@gmail.com";
+            final String password = "fafran2011";//"12345678ihov";
             final String subject = "MENSUALIDAD PENDIENTE";
             final String body = "<strong>Estimado Cliente</strong><br/><br/>"
                     + "<em>Le recuerdo que usted tiene una cuota impaga a la fecha de hoy, favor contactarme para saldar la deuda.<br/></em><br/>"
