@@ -102,8 +102,8 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
                                             l.getMonto(),
                                             l.getObservacion(),
                                             l.getNrecibo(),
-                                            DateUtils.intMonth2stringMonth(Integer.valueOf(l.getMes())),
-                                            l.getAnno(),
+//                                            DateUtils.intMonth2stringMonth(Integer.valueOf(l.getMes())),
+//                                            l.getAnno(),
                                             DateUtils.date2string(l.getFechaDate())));
                         });
 
@@ -131,17 +131,17 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
                                 new PropertyValueFactory<>("observacion")
                         );
 
-                        TableColumn mesCol = new TableColumn("Mes de abono");
-                        mesCol.setMinWidth(70);
-                        mesCol.setCellValueFactory(
-                                new PropertyValueFactory<>("mes")
-                        );
-
-                        TableColumn annoCol = new TableColumn("Año de abono");
-                        annoCol.setMinWidth(30);
-                        annoCol.setCellValueFactory(
-                                new PropertyValueFactory<>("anno")
-                        );
+//                        TableColumn mesCol = new TableColumn("Mes de abono");
+//                        mesCol.setMinWidth(70);
+//                        mesCol.setCellValueFactory(
+//                                new PropertyValueFactory<>("mes")
+//                        );
+//
+//                        TableColumn annoCol = new TableColumn("Año de abono");
+//                        annoCol.setMinWidth(30);
+//                        annoCol.setCellValueFactory(
+//                                new PropertyValueFactory<>("anno")
+//                        );
 
                         TableColumn fechaCol = new TableColumn("Fecha movimiento");
                         fechaCol.setMinWidth(70);
@@ -160,8 +160,8 @@ public class ListPaymentsController extends ListPaymentsViewComponent implements
                                 rutempresaCol,
                                 nreciboCol,
                                 montoCol,
-                                mesCol,
-                                annoCol,
+//                                mesCol,
+//                                annoCol,
                                 fechaCol,
                                 observacionCol,
                                 idAbonoCol

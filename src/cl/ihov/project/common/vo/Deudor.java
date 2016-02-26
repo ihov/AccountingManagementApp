@@ -1,5 +1,6 @@
 package cl.ihov.project.common.vo;
 
+import java.util.Date;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Deudor {
@@ -9,14 +10,16 @@ public class Deudor {
     private final SimpleStringProperty giroComercial;
     private final SimpleStringProperty montoAbono;
     private final SimpleStringProperty montoDebe;
-    private final SimpleStringProperty mes;
-    private final SimpleStringProperty anno;
+//    private final SimpleStringProperty mes;
+//    private final SimpleStringProperty anno;
     private final SimpleStringProperty valorMensual;
+    private Date fechaIni;
+    private Date fechaTer;
     private int valorMensualInt;
     private int totalAbono;
     private int montoDebeInt;
-    private int intMes;
-    private int intAnno;
+//    private int intMes;
+//    private int intAnno;
     private String rutCliente;
     
      public Deudor() {
@@ -25,8 +28,8 @@ public class Deudor {
         this.giroComercial = new SimpleStringProperty();
         this.montoAbono = new SimpleStringProperty();
         this.montoDebe = new SimpleStringProperty();
-        this.mes = new SimpleStringProperty();
-        this.anno = new SimpleStringProperty();
+//        this.mes = new SimpleStringProperty();
+//        this.anno = new SimpleStringProperty();
         this.valorMensual = new SimpleStringProperty();
     }
     
@@ -36,8 +39,8 @@ public class Deudor {
        this.giroComercial=new SimpleStringProperty(giroComercial);
        this.montoAbono=new SimpleStringProperty(montoAbono);
        this.montoDebe=new SimpleStringProperty(montoDebe);
-       this.mes=new SimpleStringProperty(mes);
-       this.anno=new SimpleStringProperty(anno);
+//       this.mes=new SimpleStringProperty(mes);
+//       this.anno=new SimpleStringProperty(anno);
        this.valorMensual=new SimpleStringProperty(valorMensual);
      }
 
@@ -82,21 +85,21 @@ public class Deudor {
         this.montoDebe.set(montoDebe != null ? montoDebe.trim() : "");
     }
 
-    public String getMes() {
-        return mes.get();
-    }
-
-    public void setMes(String mes) {
-        this.mes.set(mes != null ? mes.trim() : "");
-    }
-
-    public String getAnno() {
-        return anno.get();
-    }
-
-    public void setAnno(String anno) {
-        this.anno.set(anno != null ? anno.trim() : "");
-    }
+//    public String getMes() {
+//        return mes.get();
+//    }
+//
+//    public void setMes(String mes) {
+//        this.mes.set(mes != null ? mes.trim() : "");
+//    }
+//
+//    public String getAnno() {
+//        return anno.get();
+//    }
+//
+//    public void setAnno(String anno) {
+//        this.anno.set(anno != null ? anno.trim() : "");
+//    }
 
     public String getValorMensual() {
         return valorMensual.get();
@@ -114,13 +117,13 @@ public class Deudor {
         this.valorMensualInt = valorMensualInt;
     }
 
-    public int getMesInt() {
-        return Integer.parseInt(mes.get());
-    }
-
-    public int getAnnoInt() {
-        return Integer.parseInt(anno.get());
-    }
+//    public int getMesInt() {
+//        return Integer.parseInt(mes.get());
+//    }
+//
+//    public int getAnnoInt() {
+//        return Integer.parseInt(anno.get());
+//    }
 
     public void setMontoInt(int montoInt){
         this.montoAbono.set(String.valueOf(montoInt));
@@ -156,31 +159,38 @@ public class Deudor {
         this.montoDebeInt = montoDebeInt;
     }
 
-    /**
-     * @return the intMes
-     */
-    public int getIntMes() {
-        return intMes;
+   
+//    public int getIntMes() {
+//        return intMes;
+//    }
+//
+//    
+//    public void setIntMes(int intMes) {
+//        this.intMes = intMes;
+//    }
+//
+//    public int getIntAnno() {
+//        return intAnno;
+//    }
+//
+//    public void setIntAnno(int intAnno) {
+//        this.intAnno = intAnno;
+//    }
+
+    public Date getFechaIni() {
+        return fechaIni;
     }
 
-    /**
-     * @param intMes the intMes to set
-     */
-    public void setIntMes(int intMes) {
-        this.intMes = intMes;
+    public void setFechaIni(Date fechaIni) {
+        this.fechaIni = fechaIni;
     }
 
-    /**
-     * @return the intAnno
-     */
-    public int getIntAnno() {
-        return intAnno;
+    public Date getFechaTer() {
+        return fechaTer;
     }
 
-    /**
-     * @param intAnno the intAnno to set
-     */
-    public void setIntAnno(int intAnno) {
-        this.intAnno = intAnno;
+   
+    public void setFechaTer(Date fechaTer) {
+        this.fechaTer = fechaTer;
     }
 }

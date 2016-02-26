@@ -137,13 +137,13 @@ public class AbonoManagerImpl implements AbonoManager {
         try {
             adminClientesMapper.deleteDeudorReporte();
             for (Deudor deudor : listaDeudores) {
-                deudor.setMes(mesAbono);
-                deudor.setAnno(anioAbono);
+//                deudor.setMes(mesAbono);
+//                deudor.setAnno(anioAbono);
                 deudor.setTotalAbono(Integer.valueOf(deudor.getMontoAbono()));
                 deudor.setMontoDebeInt(Integer.valueOf(deudor.getMontoDebe()));
                 deudor.setValorMensualInt(Integer.valueOf(deudor.getValorMensual()));
-                deudor.setIntMes(Integer.valueOf(deudor.getMes()));
-                deudor.setIntAnno(Integer.valueOf(deudor.getAnno()));
+//                deudor.setIntMes(Integer.valueOf(deudor.getMes()));
+//                deudor.setIntAnno(Integer.valueOf(deudor.getAnno()));
                 adminClientesMapper.insertDeudor(deudor);
             }
         } catch (DataException ex) {

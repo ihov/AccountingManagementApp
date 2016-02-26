@@ -36,14 +36,14 @@ public class PaymentController extends PaymentViewComponent implements Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        mesAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboMesAbono"));
-        annioAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
+//        mesAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboMesAbono"));
+//        annioAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
         empresaManeger = new EmpresaManagerImpl();
         abonoManeger = new AbonoManagerImpl();
         abonoEmpresa = new Abono();
         loadDataEmpresas();
-        loadMeses();
-        cargaPeriodos();
+//        loadMeses();
+//        cargaPeriodos();
         //fecha.setEditable(false);
 
         monto.focusedProperty().addListener((ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) -> {
@@ -94,14 +94,14 @@ public class PaymentController extends PaymentViewComponent implements Initializ
                     abonoEmpresa.setObservacion(observacion.getText().trim());
                     if (nrecibo.getText() != null && !nrecibo.getText().isEmpty()) {
                         abonoEmpresa.setNrecibo(nrecibo.getText().trim());
-                        if (mesAbono.getValue() != null && !mesAbono.getValue().equals("0")) {
-                            abonoEmpresa.setMes(String.valueOf(mesAbono.getSelectionModel().getSelectedIndex()));
-                            if (annioAbono.getValue() != null && !annioAbono.getValue().equals("0")) {
-                                abonoEmpresa.setAnno(annioAbono.getSelectionModel().getSelectedItem());
-                                //if (fecha.getValue() != null) {
-                                  //  Calendar c = Calendar.getInstance();
-                                   // c.set(fecha.getValue().getYear(), fecha.getValue().getMonthValue() - 1, fecha.getValue().getDayOfMonth());
-                                    //abonoEmpresa.setFechaDate(c.getTime());
+                       // if (mesAbono.getValue() != null && !mesAbono.getValue().equals("0")) {
+                          //  abonoEmpresa.setMes(String.valueOf(mesAbono.getSelectionModel().getSelectedIndex()));
+                          //  if (annioAbono.getValue() != null && !annioAbono.getValue().equals("0")) {
+                           //     abonoEmpresa.setAnno(annioAbono.getSelectionModel().getSelectedItem());
+                                if (fechaAbono.getValue() != null) {
+                                    Calendar c = Calendar.getInstance();
+                                    c.set(fechaAbono.getValue().getYear(), fechaAbono.getValue().getMonthValue() - 1, fechaAbono.getValue().getDayOfMonth());
+                                    abonoEmpresa.setFechaDate(c.getTime());
                                     try {
                                         abonoManeger.insertAbono(abonoEmpresa);
                                         DialogUtils.showSimpleDialog(DialogUtils.INFORMATION_DIALOG,
@@ -116,24 +116,24 @@ public class PaymentController extends PaymentViewComponent implements Initializ
                                                 "El detalle de la excepción se presenta \na continuación",
                                                 new DataException(ex));
                                     }
-                                //} else {
-                                 //   DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
-                                  //          "Error",
-                                   //         "Fecha del abono",
-                                    //        "El registro fecha del abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
-                                //}
-                            } else {
-                                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
-                                        "Error",
-                                        "Año de abono",
-                                        "El registro año de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
-                            }
-                        } else {
-                            DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
-                                    "Error",
-                                    "Mes de abono",
-                                    "El registro mes de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
-                        }
+                                } else {
+                                    DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+                                            "Error",
+                                            "Fecha del abono",
+                                            "El registro fecha del abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+                                }
+//                            } else {
+//                                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+//                                        "Error",
+//                                        "Año de abono",
+//                                        "El registro año de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+//                            }
+//                        } else {
+//                            DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+//                                    "Error",
+//                                    "Mes de abono",
+//                                    "El registro mes de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+//                        }
                     } else {
                         DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                                 "Error",
@@ -160,39 +160,39 @@ public class PaymentController extends PaymentViewComponent implements Initializ
         }
     }
 
-    private void cargaPeriodos() {
-        annioAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
-        int cont = 1;
-        int initialYear = 2010;
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        for (int year = currentYear; year >= initialYear; year--) {
-            annioAbono.getItems().add(cont, String.valueOf(year));
-            cont++;
-        }
-    }
-
-    private void loadMeses() {
-        try {
-            List<Mes> lista = empresaManeger.findMeses();
-            if (lista != null) {
-                mesAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboMesAbono"));
-                lista.stream().forEach((mes) -> {
-                    mesAbono.getItems().add(mes.getIdMes(), mes.getDescripcion());
-                });
-            } else {
-                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
-                        "Error",
-                        "Ocurrió un problema",
-                        "Problema . \nIntente nuevamente.");
-            }
-        } catch (DataException ex) {
-            DialogUtils.showExceptionDialog(
-                    "Error",
-                    "Se ha producido un error inesperado",
-                    "El detalle de la excepción se presenta \na continuación",
-                    new DataException(ex));
-        }
-    }
+//    private void cargaPeriodos() {
+//        annioAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
+//        int cont = 1;
+//        int initialYear = 2010;
+//        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+//        for (int year = currentYear; year >= initialYear; year--) {
+//            annioAbono.getItems().add(cont, String.valueOf(year));
+//            cont++;
+//        }
+//    }
+//
+//    private void loadMeses() {
+//        try {
+//            List<Mes> lista = empresaManeger.findMeses();
+//            if (lista != null) {
+//                mesAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboMesAbono"));
+//                lista.stream().forEach((mes) -> {
+//                    mesAbono.getItems().add(mes.getIdMes(), mes.getDescripcion());
+//                });
+//            } else {
+//                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+//                        "Error",
+//                        "Ocurrió un problema",
+//                        "Problema . \nIntente nuevamente.");
+//            }
+//        } catch (DataException ex) {
+//            DialogUtils.showExceptionDialog(
+//                    "Error",
+//                    "Se ha producido un error inesperado",
+//                    "El detalle de la excepción se presenta \na continuación",
+//                    new DataException(ex));
+//        }
+//    }
 
     private void loadDataEmpresas() {
         try {

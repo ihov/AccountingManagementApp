@@ -41,13 +41,13 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        mesAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboMesAbono"));
-        annioAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
+//        mesAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboMesAbono"));
+//        annioAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
         empresaManeger = new EmpresaManagerImpl();
         abonoManeger = new AbonoManagerImpl();
         abonoEmpresa = new Abono();
-        loadMeses();
-        cargaPeriodos();
+//        loadMeses();
+//        cargaPeriodos();
 
         monto.focusedProperty().addListener((ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue) -> {
             if (!newPropertyValue && !monto.getText().isEmpty()) {
@@ -71,7 +71,7 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
                 }
             }
         });
-        fecha.setEditable(false);
+        fechaAbono.setEditable(false);
     }
 
     public void setMainProject(MainProject mainProject) {
@@ -108,13 +108,13 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
                         abonoEmpresa.setObservacion(observacion.getText().trim());
                         if (nrecibo.getText() != null && !nrecibo.getText().isEmpty()) {
                             abonoEmpresa.setNrecibo(nrecibo.getText().trim());
-                            if (mesAbono.getValue() != null && !mesAbono.getValue().equals("0")) {
-                                abonoEmpresa.setMes(String.valueOf(mesAbono.getSelectionModel().getSelectedIndex()));
-                                if (annioAbono.getValue() != null && !annioAbono.getValue().equals("0")) {
-                                    abonoEmpresa.setAnno(annioAbono.getSelectionModel().getSelectedItem());
-                                    if (fecha.getValue() != null) {
+//                            if (mesAbono.getValue() != null && !mesAbono.getValue().equals("0")) {
+//                                abonoEmpresa.setMes(String.valueOf(mesAbono.getSelectionModel().getSelectedIndex()));
+//                                if (annioAbono.getValue() != null && !annioAbono.getValue().equals("0")) {
+//                                    abonoEmpresa.setAnno(annioAbono.getSelectionModel().getSelectedItem());
+                                    if (fechaAbono.getValue() != null) {
                                         Calendar c = Calendar.getInstance();
-                                        c.set(fecha.getValue().getYear(), fecha.getValue().getMonthValue() - 1, fecha.getValue().getDayOfMonth());
+                                        c.set(fechaAbono.getValue().getYear(), fechaAbono.getValue().getMonthValue() - 1, fechaAbono.getValue().getDayOfMonth());
                                         abonoEmpresa.setFechaDate(c.getTime());
                                         try {
                                             abonoManeger.updateAbono(abonoEmpresa);
@@ -138,18 +138,18 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
                                                 "Fecha del abono",
                                                 "El registro fecha del abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
                                     }
-                                } else {
-                                    DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
-                                            "Error",
-                                            "Año de abono",
-                                            "El registro año de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
-                                }
-                            } else {
-                                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
-                                        "Error",
-                                        "Mes de abono",
-                                        "El registro mes de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
-                            }
+//                                } else {
+//                                    DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+//                                            "Error",
+//                                            "Año de abono",
+//                                            "El registro año de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+//                                }
+//                            } else {
+//                                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+//                                        "Error",
+//                                        "Mes de abono",
+//                                        "El registro mes de abono no puede estar vacío. \nIntente seleccionando un elemento de la lista.");
+//                            }
                         } else {
                             DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
                                     "Error",
@@ -182,41 +182,41 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
         }
     }
 
-    private void cargaPeriodos() {
-        annioAbono.getItems().clear();
-        annioAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
-        int cont = 1;
-        int initialYear = 2010;
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        for (int year = currentYear; year >= initialYear; year--) {
-            annioAbono.getItems().add(cont, String.valueOf(year));
-            cont++;
-        }
-    }
-
-    private void loadMeses() {
-        try {
-            List<Mes> lista = empresaManeger.findMeses();
-            if (lista != null) {
-                mesAbono.getItems().clear();
-                mesAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboMesAbono"));
-                lista.stream().forEach((mes) -> {
-                    mesAbono.getItems().add(mes.getIdMes(), mes.getDescripcion());
-                });
-            } else {
-                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
-                        "Error",
-                        "Ocurrió un problema",
-                        "Problema . \nIntente nuevamente.");
-            }
-        } catch (DataException ex) {
-            DialogUtils.showExceptionDialog(
-                    "Error",
-                    "Se ha producido un error inesperado",
-                    "El detalle de la excepción se presenta \na continuación",
-                    new DataException(ex));
-        }
-    }
+//    private void cargaPeriodos() {
+//        annioAbono.getItems().clear();
+//        annioAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
+//        int cont = 1;
+//        int initialYear = 2010;
+//        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+//        for (int year = currentYear; year >= initialYear; year--) {
+//            annioAbono.getItems().add(cont, String.valueOf(year));
+//            cont++;
+//        }
+//    }
+//
+//    private void loadMeses() {
+//        try {
+//            List<Mes> lista = empresaManeger.findMeses();
+//            if (lista != null) {
+//                mesAbono.getItems().clear();
+//                mesAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboMesAbono"));
+//                lista.stream().forEach((mes) -> {
+//                    mesAbono.getItems().add(mes.getIdMes(), mes.getDescripcion());
+//                });
+//            } else {
+//                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+//                        "Error",
+//                        "Ocurrió un problema",
+//                        "Problema . \nIntente nuevamente.");
+//            }
+//        } catch (DataException ex) {
+//            DialogUtils.showExceptionDialog(
+//                    "Error",
+//                    "Se ha producido un error inesperado",
+//                    "El detalle de la excepción se presenta \na continuación",
+//                    new DataException(ex));
+//        }
+//    }
 
     @FXML
     private void buscaAbonosEditar(ActionEvent event) {
@@ -237,8 +237,8 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
                                         c.getMonto(),
                                         c.getObservacion(),
                                         c.getNrecibo(),
-                                        DateUtils.intMonth2stringMonth(Integer.valueOf(c.getMes())),
-                                        c.getAnno(),
+//                                        DateUtils.intMonth2stringMonth(Integer.valueOf(c.getMes())),
+//                                        c.getAnno(),
                                         DateUtils.date2string(c.getFechaDate())));
                     });
 
@@ -266,17 +266,17 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
                             new PropertyValueFactory<>("observacion")
                     );
 
-                    TableColumn mesCol = new TableColumn("Mes");
-                    mesCol.setMinWidth(70);
-                    mesCol.setCellValueFactory(
-                            new PropertyValueFactory<>("mes")
-                    );
-
-                    TableColumn annoCol = new TableColumn("Año");
-                    annoCol.setMinWidth(30);
-                    annoCol.setCellValueFactory(
-                            new PropertyValueFactory<>("anno")
-                    );
+//                    TableColumn mesCol = new TableColumn("Mes");
+//                    mesCol.setMinWidth(70);
+//                    mesCol.setCellValueFactory(
+//                            new PropertyValueFactory<>("mes")
+//                    );
+//
+//                    TableColumn annoCol = new TableColumn("Año");
+//                    annoCol.setMinWidth(30);
+//                    annoCol.setCellValueFactory(
+//                            new PropertyValueFactory<>("anno")
+//                    );
 
                     TableColumn fechaCol = new TableColumn("Fecha");
                     fechaCol.setMinWidth(70);
@@ -295,8 +295,8 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
                             rutempresaCol,
                             nreciboCol,
                             montoCol,
-                            mesCol,
-                            annoCol,
+//                            mesCol,
+//                            annoCol,
                             fechaCol,
                             observacionCol,
                             idAbonoCol
@@ -324,9 +324,9 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
         monto.setText("");
         observacion.setText("");
         nrecibo.setText("");
-        cargaPeriodos();
-        loadMeses();
-        fecha.setValue(null);
+//        cargaPeriodos();
+//        loadMeses();
+        fechaAbono.setValue(null);
     }
 
     @FXML
@@ -336,9 +336,9 @@ public class PaymentEditController extends PaymentEditViewComponent implements I
                 monto.setText(dataAbono.getSelectionModel().getSelectedItem().getMonto());
                 observacion.setText(dataAbono.getSelectionModel().getSelectedItem().getObservacion());
                 nrecibo.setText(dataAbono.getSelectionModel().getSelectedItem().getNrecibo());
-                annioAbono.setValue(dataAbono.getSelectionModel().getSelectedItem().getAnno());
-                mesAbono.setValue(dataAbono.getSelectionModel().getSelectedItem().getMes());
-                fecha.setValue(DateUtils.string2date(dataAbono.getSelectionModel().getSelectedItem().getFecha()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+//                annioAbono.setValue(dataAbono.getSelectionModel().getSelectedItem().getAnno());
+//                mesAbono.setValue(dataAbono.getSelectionModel().getSelectedItem().getMes());
+                fechaAbono.setValue(DateUtils.string2date(dataAbono.getSelectionModel().getSelectedItem().getFecha()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             }
         } else {
         }

@@ -11,8 +11,8 @@ public class Abono {
     private final SimpleStringProperty monto;
     private final SimpleStringProperty observacion;
     private final SimpleStringProperty nrecibo;
-    private final SimpleStringProperty mes;
-    private final SimpleStringProperty anno;
+//    private final SimpleStringProperty mes;
+//    private final SimpleStringProperty anno;
     private final SimpleStringProperty fecha;
     private Date fechaDate;
     private int montoInt;
@@ -26,20 +26,20 @@ public class Abono {
         this.monto = new SimpleStringProperty();
         this.observacion = new SimpleStringProperty();
         this.nrecibo = new SimpleStringProperty();
-        this.anno = new SimpleStringProperty();
-        this.mes = new SimpleStringProperty();
+//        this.anno = new SimpleStringProperty();
+//        this.mes = new SimpleStringProperty();
         this.fecha = new SimpleStringProperty();
     }
 
-    public Abono(String rutCliente, String rutEmpresa, String idAbono, String monto, String observacion, String nrecibo, String mes, String anno, String fecha) {
+    public Abono(String rutCliente, String rutEmpresa, String idAbono, String monto, String observacion, String nrecibo, /*String mes, String anno,*/ String fecha) {
         this.rutCliente = new SimpleStringProperty(rutCliente);
         this.rutEmpresa = new SimpleStringProperty(rutEmpresa);
         this.idAbono = new SimpleStringProperty(idAbono);
         this.monto = new SimpleStringProperty(monto);
         this.observacion = new SimpleStringProperty(observacion);
         this.nrecibo = new SimpleStringProperty(nrecibo);
-        this.mes = new SimpleStringProperty(mes);
-        this.anno = new SimpleStringProperty(anno);
+//        this.mes = new SimpleStringProperty(mes);
+//        this.anno = new SimpleStringProperty(anno);
         this.fecha = new SimpleStringProperty(fecha);
     }
 
@@ -91,29 +91,29 @@ public class Abono {
         this.nrecibo.set(nrecibo != null ? nrecibo.trim() : "");
     }
 
-    public String getAnno() {
-        return anno.get();
-    }
+//    public String getAnno() {
+//        return anno.get();
+//    }
+//
+//    public void setAnno(String anno) {
+//        this.anno.set(anno != null ? anno.trim() : "");
+//    }
+//
+//    public String getMes() {
+//        return mes.get();
+//    }
+//
+//    public void setMes(String mes) {
+//        this.mes.set(mes != null ? mes.trim() : "");
+//    }
 
-    public void setAnno(String anno) {
-        this.anno.set(anno != null ? anno.trim() : "");
-    }
-
-    public String getMes() {
-        return mes.get();
-    }
-
-    public void setMes(String mes) {
-        this.mes.set(mes != null ? mes.trim() : "");
-    }
-
-    public int getMesInt() {
-        return Integer.valueOf(getMes());
-    }
-
-    public int getAnnoInt() {
-        return Integer.valueOf(getAnno());
-    }
+//    public int getMesInt() {
+//        return Integer.valueOf(getMes());
+//    }
+//
+//    public int getAnnoInt() {
+//        return Integer.valueOf(getAnno());
+//    }
 
     public String getIdAbono() {
         return idAbono.get();

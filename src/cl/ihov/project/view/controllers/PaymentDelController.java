@@ -88,8 +88,8 @@ public class PaymentDelController extends PaymentDelViewComponent implements Ini
                                         c.getMonto(),
                                         c.getObservacion(),
                                         c.getNrecibo(),
-                                        DateUtils.intMonth2stringMonth(Integer.valueOf(c.getMes())),
-                                        c.getAnno(),
+//                                        DateUtils.intMonth2stringMonth(Integer.valueOf(c.getMes())),
+//                                        c.getAnno(),
                                         DateUtils.date2string(c.getFechaDate())));
                     });
 
@@ -117,17 +117,17 @@ public class PaymentDelController extends PaymentDelViewComponent implements Ini
                             new PropertyValueFactory<>("observacion")
                     );
 
-                    TableColumn mesCol = new TableColumn("Mes");
-                    mesCol.setMinWidth(70);
-                    mesCol.setCellValueFactory(
-                            new PropertyValueFactory<>("mes")
-                    );
-
-                    TableColumn annoCol = new TableColumn("Año");
-                    annoCol.setMinWidth(30);
-                    annoCol.setCellValueFactory(
-                            new PropertyValueFactory<>("anno")
-                    );
+//                    TableColumn mesCol = new TableColumn("Mes");
+//                    mesCol.setMinWidth(70);
+//                    mesCol.setCellValueFactory(
+//                            new PropertyValueFactory<>("mes")
+//                    );
+//
+//                    TableColumn annoCol = new TableColumn("Año");
+//                    annoCol.setMinWidth(30);
+//                    annoCol.setCellValueFactory(
+//                            new PropertyValueFactory<>("anno")
+//                    );
 
                     TableColumn fechaCol = new TableColumn("Fecha");
                     fechaCol.setMinWidth(70);
@@ -146,8 +146,8 @@ public class PaymentDelController extends PaymentDelViewComponent implements Ini
                             rutempresaCol,
                             nreciboCol,
                             montoCol,
-                            mesCol,
-                            annoCol,
+//                            mesCol,
+//                            annoCol,
                             fechaCol,
                             observacionCol,
                             idAbonoCol
@@ -185,10 +185,10 @@ public class PaymentDelController extends PaymentDelViewComponent implements Ini
                         + dataAbono.getSelectionModel().getSelectedItem().getNrecibo()
                         + " | Monto: "
                         + dataAbono.getSelectionModel().getSelectedItem().getMonto()
-                        + " | Mes: "
-                        + dataAbono.getSelectionModel().getSelectedItem().getMes()
-                        + " | Año: "
-                        + dataAbono.getSelectionModel().getSelectedItem().getAnno()
+//                        + " | Mes: "
+//                        + dataAbono.getSelectionModel().getSelectedItem().getMes()
+//                        + " | Año: "
+//                        + dataAbono.getSelectionModel().getSelectedItem().getAnno()
                         + " | Fecha: "
                         + dataAbono.getSelectionModel().getSelectedItem().getFecha()
                 );

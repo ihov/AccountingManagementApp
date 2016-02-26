@@ -11,8 +11,10 @@
         <result column="monto" property="montoInt" jdbcType="INTEGER" />
         <result column="fecha" property="fechaDate" jdbcType="DATE" />
         <result column="observacion" property="observacion" jdbcType="VARCHAR" />
+        <!--
         <result column="mes" property="mes" jdbcType="VARCHAR" />
         <result column="anno" property="anno" jdbcType="VARCHAR" />
+        -->
     </resultMap>
     
     <resultMap id="deudoresResultMap" type="cl.ihov.project.common.vo.Deudor">
@@ -97,9 +99,7 @@
         monto,
         fecha,
         nrecibo,
-        observacion,
-        mes,
-        anno
+        observacion
     </sql>
     
     <sql id='expressionDeudores'>
@@ -128,7 +128,7 @@
         FROM
         abono
         WHERE
-        fecha_mov between  #{fechaInicio,jdbcType=DATE} and #{fechaTermino ,jdbcType=DATE} 
+        fecha between  #{fechaInicio,jdbcType=DATE} and #{fechaTermino ,jdbcType=DATE} 
     </select>
     
     <select id="selectDeudores" resultMap="deudoresResultMap" parameterType="cl.ihov.project.common.vo.Deudor">
@@ -293,9 +293,9 @@
         #{montoInt,jdbcType=INTEGER},            
         #{nrecibo,jdbcType=VARCHAR},
         #{observacion,jdbcType=VARCHAR},
-        #{mesInt,jdbcType=INTEGER},
-        #{annoInt,jdbcType=INTEGER},
-        CURRENT_TIMESTAMP,
+        0,
+        0,
+        #{fechaDate,jdbcType=DATE},
         CURRENT_TIMESTAMP,
         #{valorMensual,jdbcType=INTEGER})
     </insert>
@@ -362,8 +362,6 @@
         fecha = #{fechaDate,jdbcType=DATE},   
         nrecibo = #{nrecibo,jdbcType=VARCHAR},         
         observacion = #{observacion,jdbcType=VARCHAR},
-        mes = #{mesInt,jdbcType=INTEGER},
-        anno = #{annoInt,jdbcType=INTEGER},
         fecha_mov = CURRENT_TIMESTAMP
         WHERE
         rutempresa = #{rutEmpresa,jdbcType=VARCHAR} and

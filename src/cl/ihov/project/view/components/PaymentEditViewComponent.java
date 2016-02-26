@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 public class PaymentEditViewComponent {
 
     @FXML
-    protected DatePicker fecha;
+    protected DatePicker fechaAbono;
 
     @FXML
     protected TextField monto;
@@ -24,12 +24,12 @@ public class PaymentEditViewComponent {
 
     @FXML
     protected TableView<Abono> dataAbono;
-    
-    @FXML
-    protected ComboBox <String> annioAbono;
-    
-    @FXML
-    protected ComboBox <String> mesAbono;
+//    
+//    @FXML
+//    protected ComboBox <String> annioAbono;
+//    
+//    @FXML
+//    protected ComboBox <String> mesAbono;
     
     @FXML
     protected Button goHomeP;

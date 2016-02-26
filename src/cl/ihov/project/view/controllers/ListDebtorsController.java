@@ -53,13 +53,13 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
         empresaManeger = new EmpresaManagerImpl();
         abonoManager = new AbonoManagerImpl();
         clienteManeger = new ClienteManagerImpl();
-        mesAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboMesAbono"));
-        annioAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
+//        mesAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboMesAbono"));
+//        annioAbono.setPromptText(BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
         sendMail.setDisable(true);
         deudoresAll.setDisable(true);
         deudor = new Deudor();
-        cargaPeriodos();
-        cargaMeses();
+        //cargaPeriodos();
+        //cargaMeses();
 
     }
 
@@ -74,40 +74,38 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
                 "La información ingresada no es correcta. \nIntente nuevamente.");
     }
 
-    private void cargaPeriodos() {
-        annioAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
-        int cont = 1;
-        int initialYear = 2010;
-        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        for (int year = currentYear; year >= initialYear; year--) {
-            annioAbono.getItems().add(cont, String.valueOf(year));
-            cont++;
-        }
-    }
-
-    private void cargaMeses() {
-        try {
-            List<Mes> lista = empresaManeger.findMeses();
-            if (lista != null) {
-                mesAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboMesAbono"));
-                lista.stream().forEach((mes) -> {
-                    mesAbono.getItems().add(mes.getIdMes(), mes.getDescripcion());
-                });
-            } else {
-                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
-                        "Error",
-                        "Ocurrió un problema",
-                        "Problema . \nIntente nuevamente.");
-            }
-        } catch (DataException ex) {
-            DialogUtils.showExceptionDialog(
-                    "Error",
-                    "Se ha producido un error inesperado",
-                    "El detalle de la excepción se presenta \na continuación",
-                    new DataException(ex));
-        }
-    }
-
+//    private void cargaPeriodos() {
+//        annioAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboAnnioAbono"));
+//        int cont = 1;
+//        int initialYear = 2010;
+//        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+//        for (int year = currentYear; year >= initialYear; year--) {
+//            annioAbono.getItems().add(cont, String.valueOf(year));
+//            cont++;
+//        }
+//    }
+//    private void cargaMeses() {
+//        try {
+//            List<Mes> lista = empresaManeger.findMeses();
+//            if (lista != null) {
+//                mesAbono.getItems().add(0, BaseResources.getValue("sys_config", "promptComboMesAbono"));
+//                lista.stream().forEach((mes) -> {
+//                    mesAbono.getItems().add(mes.getIdMes(), mes.getDescripcion());
+//                });
+//            } else {
+//                DialogUtils.showSimpleDialog(DialogUtils.ERROR_DIALOG,
+//                        "Error",
+//                        "Ocurrió un problema",
+//                        "Problema . \nIntente nuevamente.");
+//            }
+//        } catch (DataException ex) {
+//            DialogUtils.showExceptionDialog(
+//                    "Error",
+//                    "Se ha producido un error inesperado",
+//                    "El detalle de la excepción se presenta \na continuación",
+//                    new DataException(ex));
+//        }
+//    }
     @FXML
     private void handleGoReports(ActionEvent event) {
         mainProject.showReportView();
@@ -115,30 +113,35 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
 
     @FXML
     private void handleReportAllDeudores(ActionEvent event) {
-        try {
-            abonoManager.insertDeudores(listaDeudores, annioAbono.getSelectionModel().getSelectedItem(), DateUtils.stringMonth2intMonth(mesAbono.getSelectionModel().getSelectedItem()));
-        } catch (DataException ex) {
-            DialogUtils.showExceptionDialog(
-                    "Error",
-                    "Se ha producido un error inesperado",
-                    "El detalle de la excepción se presenta \na continuación",
-                    new DataException(ex));
-        }
-        HashMap hm = null;
-        try {
-            BaseJasperReports.createReport("listadoDeudores", hm);
-        } catch (JRException ex) {
-            ex.printStackTrace();
-        }
+//        try {
+//            //abonoManager.insertDeudores(listaDeudores, 0, 0);
+//        } catch (DataException ex) {
+//            DialogUtils.showExceptionDialog(
+//                    "Error",
+//                    "Se ha producido un error inesperado",
+//                    "El detalle de la excepción se presenta \na continuación",
+//                    new DataException(ex));
+//        }
+//        HashMap hm = null;
+//        try {
+//            BaseJasperReports.createReport("listadoDeudores", hm);
+//        } catch (JRException ex) {
+//            ex.printStackTrace();
+//        }
     }
 
     @FXML
     private void handleBuscaDeudores(ActionEvent event) {
-        if (mesAbono.getValue() != null && !mesAbono.getValue().equals("0")) {
-            deudor.setMes(String.valueOf(mesAbono.getSelectionModel().getSelectedIndex()));
-            if (annioAbono.getValue() != null && !annioAbono.getValue().equals("0")) {
-                deudor.setAnno(annioAbono.getSelectionModel().getSelectedItem());
-
+        if (fechaIni.getValue() != null && !fechaIni.getValue().equals("0")) {
+            //deudor.setMes(String.valueOf(mesAbono.getSelectionModel().getSelectedIndex()));
+            Calendar f = Calendar.getInstance();
+            f.set(fechaIni.getValue().getYear(), fechaIni.getValue().getMonthValue() - 1, fechaIni.getValue().getDayOfMonth());
+            deudor.setFechaIni(f.getTime());
+            if (fechaTer.getValue() != null && !fechaTer.getValue().equals("0")) {
+                //deudor.setAnno(annioAbono.getSelectionModel().getSelectedItem());
+                Calendar d = Calendar.getInstance();
+                d.set(fechaTer.getValue().getYear(), fechaTer.getValue().getMonthValue() - 1, fechaTer.getValue().getDayOfMonth());
+                deudor.setFechaTer(d.getTime());
                 try {
                     List<Deudor> lista = abonoManager.findDeudores(deudor);
                     if (lista != null) {
@@ -237,8 +240,8 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
             goReportes.setDisable(true);
             dataEmpresa.setDisable(true);
             sendMail.setDisable(true);
-            annioAbono.setDisable(true);
-            mesAbono.setDisable(true);
+//            annioAbono.setDisable(true);
+//            mesAbono.setDisable(true);
             buscar.setDisable(true);
             deudoresAll.setDisable(true);
             progreso.setProgress(-1.0f);
@@ -280,7 +283,7 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
             final String body = "<strong>Estimado Cliente</strong><br/><br/>"
                     + "<em>Le recuerdo que usted tiene una cuota impaga a la fecha de hoy, favor contactarme para saldar la deuda.<br/></em><br/>"
                     + "<em>Saludos cordiales, Victoria Mora.</em><br/>";
-                    //+ "<strong><em>Victoria Mora</em></strong>";
+            //+ "<strong><em>Victoria Mora</em></strong>";
             final HashMap<Object, Object> proBar = new HashMap<>();
 
             Task<Void> task = new Task<Void>() {
@@ -298,8 +301,8 @@ public class ListDebtorsController extends ListDebtorsViewComponent implements I
                     goReportes.setDisable(false);
                     dataEmpresa.setDisable(false);
                     sendMail.setDisable(false);
-                    annioAbono.setDisable(false);
-                    mesAbono.setDisable(false);
+//                    annioAbono.setDisable(false);
+//                    mesAbono.setDisable(false);
                     buscar.setDisable(false);
                     deudoresAll.setDisable(false);
                     return null;
